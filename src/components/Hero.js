@@ -1,7 +1,23 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet, Linking, useWindowDimensions } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet, Linking, useWindowDimensions } from 'react-native';
 import { colors, spacing, typography, breakpoints } from '../theme';
 import { profile } from '../data';
+
+function Avatar({ size }) {
+  return (
+    <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2 }]}>
+      {profile.photoUrl ? (
+        <Image
+          source={{ uri: profile.photoUrl }}
+          style={{ width: size, height: size, borderRadius: size / 2 }}
+          accessibilityLabel={profile.name}
+        />
+      ) : (
+        <Text style={[styles.avatarInitials, { fontSize: size * 0.36 }]}>{profile.initials}</Text>
+      )}
+    </View>
+  );
+}
 
 function Button({ label, onPress, primary }) {
   return (
@@ -27,6 +43,7 @@ export function Hero() {
   return (
     <View nativeID="top" style={[styles.wrapper, { paddingHorizontal: isMobile ? spacing.lg : spacing.xxl }]}>
       <View style={styles.inner}>
+        <Avatar size={isMobile ? 84 : 112} />
         <Text style={styles.kicker}>Full-Stack &amp; AI/ML Engineer</Text>
         <Text style={[styles.name, isMobile && styles.nameMobile]}>{profile.name}</Text>
         <Text style={styles.title}>{profile.title}</Text>
@@ -45,6 +62,20 @@ export function Hero() {
 }
 
 const styles = StyleSheet.create({
+  avatar: {
+    backgroundColor: colors.accentSoft,
+    borderWidth: 1,
+    borderColor: colors.border,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    marginBottom: spacing.lg,
+  },
+  avatarInitials: {
+    fontFamily: typography.serifFamily,
+    fontWeight: '600',
+    color: colors.accentDeep,
+  },
   wrapper: {
     width: '100%',
     alignItems: 'center',
