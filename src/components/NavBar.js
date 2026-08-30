@@ -25,12 +25,18 @@ export function NavBar() {
   return (
     <View style={styles.wrapper}>
       <View style={[styles.bar, { paddingHorizontal: isMobile ? spacing.lg : spacing.xxl }]}>
-        <Pressable onPress={() => scrollToId('top')} style={styles.brand}>
+        <Pressable onPress={() => scrollToId('top')} style={styles.brand} accessibilityRole="link" accessibilityLabel="Back to top">
           <Text style={styles.brandText}>DP</Text>
         </Pressable>
 
         {isMobile ? (
-          <Pressable onPress={() => setOpen((o) => !o)} style={styles.menuButton} accessibilityRole="button">
+          <Pressable
+            onPress={() => setOpen((o) => !o)}
+            style={styles.menuButton}
+            accessibilityRole="button"
+            accessibilityLabel="Toggle navigation menu"
+            accessibilityState={{ expanded: open }}
+          >
             <View style={styles.menuLine} />
             <View style={styles.menuLine} />
             <View style={styles.menuLine} />
@@ -38,7 +44,7 @@ export function NavBar() {
         ) : (
           <View style={styles.links}>
             {LINKS.map((link) => (
-              <Pressable key={link.id} onPress={() => scrollToId(link.id)} style={styles.linkItem}>
+              <Pressable key={link.id} onPress={() => scrollToId(link.id)} style={styles.linkItem} accessibilityRole="link">
                 <Text style={styles.linkText}>{link.label}</Text>
               </Pressable>
             ))}
@@ -56,6 +62,7 @@ export function NavBar() {
                 scrollToId(link.id);
               }}
               style={styles.mobileLinkItem}
+              accessibilityRole="link"
             >
               <Text style={styles.linkText}>{link.label}</Text>
             </Pressable>
