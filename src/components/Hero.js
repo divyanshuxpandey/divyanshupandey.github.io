@@ -23,6 +23,7 @@ function Button({ label, onPress, primary }) {
   return (
     <Pressable
       onPress={onPress}
+      accessibilityRole="link"
       style={({ hovered }) => [
         styles.button,
         primary ? styles.buttonPrimary : styles.buttonGhost,
@@ -51,7 +52,11 @@ export function Hero() {
         <Text style={styles.summary}>{profile.summary}</Text>
 
         <View style={[styles.actions, isMobile && styles.actionsMobile]}>
-          <Button label="Email me" primary onPress={() => Linking.openURL(`mailto:${profile.email}`)} />
+          <Button
+            label="Email me"
+            primary
+            onPress={() => Linking.openURL(`mailto:${profile.email}`, '_self')}
+          />
           <Button label="GitHub" onPress={() => Linking.openURL(profile.github)} />
           <Button label="LinkedIn" onPress={() => Linking.openURL(profile.linkedin)} />
           <Button label="Download résumé" onPress={() => Linking.openURL(profile.resumeUrl)} />

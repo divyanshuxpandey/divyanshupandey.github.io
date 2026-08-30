@@ -17,13 +17,13 @@ export function Footer() {
         </Text>
 
         <View style={[styles.linkRow, isMobile && styles.linkRowMobile]}>
-          <Pressable onPress={() => Linking.openURL(`mailto:${profile.email}`)}>
+          <Pressable onPress={() => Linking.openURL(`mailto:${profile.email}`, '_self')} accessibilityRole="link">
             <Text style={styles.link}>{profile.email}</Text>
           </Pressable>
-          <Pressable onPress={() => Linking.openURL(profile.github)}>
+          <Pressable onPress={() => Linking.openURL(profile.github)} accessibilityRole="link">
             <Text style={styles.link}>GitHub ↗</Text>
           </Pressable>
-          <Pressable onPress={() => Linking.openURL(profile.linkedin)}>
+          <Pressable onPress={() => Linking.openURL(profile.linkedin)} accessibilityRole="link">
             <Text style={styles.link}>LinkedIn ↗</Text>
           </Pressable>
         </View>
