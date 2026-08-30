@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import { colors, spacing, typography, breakpoints } from '../theme';
+import { useInView } from '../hooks/useInView';
 
 export function Section({ id, children, style, alt }) {
   const { width } = useWindowDimensions();
   const isMobile = width < breakpoints.mobile;
+  const [ref, inView] = useInView();
 
   return (
     <View
@@ -16,7 +18,21 @@ export function Section({ id, children, style, alt }) {
         style,
       ]}
     >
-      <View style={styles.inner}>{children}</View>
+      <View
+        ref={ref}
+        style={[
+          styles.inner,
+          {
+            opacity: inView ? 1 : 0,
+            transform: [{ translateY: inView ? 0 : 20 }],
+            transitionProperty: 'opacity, transform',
+            transitionDuration: '700ms',
+            transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          },
+        ]}
+      >
+        {children}
+      </View>
     </View>
   );
 }

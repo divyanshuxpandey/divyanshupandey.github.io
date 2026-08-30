@@ -1,17 +1,17 @@
 // Subtle, muted palette — warm neutrals with a single restrained accent.
 export const colors = {
-  background: '#FAF9F6',
+  background: '#FBFAF7',
   surface: '#FFFFFF',
-  surfaceAlt: '#F1EFEA',
-  border: '#E4E1D8',
-  textPrimary: '#2B2A28',
-  textSecondary: '#6B6963',
-  textMuted: '#8B897F',
-  accent: '#4F6D68',
-  accentSoft: '#E4EBE8',
-  accentDeep: '#3A5450',
-  tagBackground: '#EFECE3',
-  tagText: '#5C5A50',
+  surfaceAlt: '#F3F1EC',
+  border: '#E9E6DE',
+  textPrimary: '#33322F',
+  textSecondary: '#726F67',
+  textMuted: '#939086',
+  accent: '#5B7A73',
+  accentSoft: '#E9EFEC',
+  accentDeep: '#42615B',
+  tagBackground: '#F1EEE6',
+  tagText: '#6B6858',
 };
 
 export const spacing = {

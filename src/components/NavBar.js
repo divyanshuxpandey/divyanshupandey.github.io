@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, useWindowDimensions } from 'react-native';
 import { colors, spacing, typography, breakpoints } from '../theme';
 
@@ -17,10 +17,34 @@ function scrollToId(id) {
   }
 }
 
+function useActiveSection() {
+  const [activeId, setActiveId] = useState(null);
+
+  useEffect(() => {
+    if (typeof document === 'undefined' || typeof IntersectionObserver === 'undefined') return undefined;
+
+    const elements = LINKS.map((link) => document.getElementById(link.id)).filter(Boolean);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return activeId;
+}
+
 export function NavBar() {
   const { width } = useWindowDimensions();
   const isMobile = width < breakpoints.tablet;
   const [open, setOpen] = useState(false);
+  const activeId = useActiveSection();
 
   return (
     <View style={styles.wrapper}>
@@ -43,30 +67,41 @@ export function NavBar() {
           </Pressable>
         ) : (
           <View style={styles.links}>
-            {LINKS.map((link) => (
-              <Pressable key={link.id} onPress={() => scrollToId(link.id)} style={styles.linkItem} accessibilityRole="link">
-                <Text style={styles.linkText}>{link.label}</Text>
-              </Pressable>
-            ))}
+            {LINKS.map((link) => {
+              const active = link.id === activeId;
+              return (
+                <Pressable
+                  key={link.id}
+                  onPress={() => scrollToId(link.id)}
+                  style={[styles.linkItem, active && styles.linkItemActive]}
+                  accessibilityRole="link"
+                >
+                  <Text style={[styles.linkText, active && styles.linkTextActive]}>{link.label}</Text>
+                </Pressable>
+              );
+            })}
           </View>
         )}
       </View>
 
       {isMobile && open ? (
         <View style={styles.mobileMenu}>
-          {LINKS.map((link) => (
-            <Pressable
-              key={link.id}
-              onPress={() => {
-                setOpen(false);
-                scrollToId(link.id);
-              }}
-              style={styles.mobileLinkItem}
-              accessibilityRole="link"
-            >
-              <Text style={styles.linkText}>{link.label}</Text>
-            </Pressable>
-          ))}
+          {LINKS.map((link) => {
+            const active = link.id === activeId;
+            return (
+              <Pressable
+                key={link.id}
+                onPress={() => {
+                  setOpen(false);
+                  scrollToId(link.id);
+                }}
+                style={styles.mobileLinkItem}
+                accessibilityRole="link"
+              >
+                <Text style={[styles.linkText, active && styles.linkTextActive]}>{link.label}</Text>
+              </Pressable>
+            );
+          })}
         </View>
       ) : null}
     </View>
@@ -115,12 +150,26 @@ const styles = StyleSheet.create({
   },
   linkItem: {
     marginLeft: spacing.lg,
+    paddingBottom: 4,
+    borderBottomWidth: 2,
+    borderBottomColor: 'transparent',
+    transitionProperty: 'border-color',
+    transitionDuration: '250ms',
+  },
+  linkItemActive: {
+    borderBottomColor: colors.accent,
   },
   linkText: {
     fontFamily: typography.fontFamily,
     fontSize: 14,
     color: colors.textSecondary,
     fontWeight: '500',
+    transitionProperty: 'color',
+    transitionDuration: '250ms',
+  },
+  linkTextActive: {
+    color: colors.accent,
+    fontWeight: '700',
   },
   menuButton: {
     width: 28,

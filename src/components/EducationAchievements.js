@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
+import { View, Text, Pressable, StyleSheet, useWindowDimensions } from 'react-native';
 import { colors, spacing, radius, typography, breakpoints } from '../theme';
 import { Section, SectionHeading } from './Section';
 import { education, achievements } from '../data';
@@ -12,16 +12,28 @@ export function EducationAchievements() {
     <Section id="education" alt>
       <SectionHeading eyebrow="Foundation" title="Education &amp; Achievements" />
       <View style={[styles.row, isMobile && styles.rowMobile]}>
-        <View style={[styles.card, isMobile ? styles.cardMobile : styles.cardHalf]}>
+        <Pressable
+          style={({ hovered }) => [
+            styles.card,
+            isMobile ? styles.cardMobile : styles.cardHalf,
+            hovered && styles.cardHovered,
+          ]}
+        >
           <Text style={styles.cardLabel}>Education</Text>
           <Text style={styles.degree}>{education.degree}</Text>
           <Text style={styles.school}>{education.school}</Text>
           <Text style={styles.meta}>
             {education.location} · {education.period}
           </Text>
-        </View>
+        </Pressable>
 
-        <View style={[styles.card, isMobile ? styles.cardMobile : styles.cardHalf]}>
+        <Pressable
+          style={({ hovered }) => [
+            styles.card,
+            isMobile ? styles.cardMobile : styles.cardHalf,
+            hovered && styles.cardHovered,
+          ]}
+        >
           <Text style={styles.cardLabel}>Achievements</Text>
           {achievements.map((line, i) => (
             <View key={i} style={styles.achievementRow}>
@@ -29,7 +41,7 @@ export function EducationAchievements() {
               <Text style={styles.achievementText}>{line}</Text>
             </View>
           ))}
-        </View>
+        </Pressable>
       </View>
     </Section>
   );
@@ -49,6 +61,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     padding: spacing.lg,
+    cursor: 'default',
+    transform: [{ translateY: 0 }],
+    transitionProperty: 'transform, box-shadow, border-color',
+    transitionDuration: '250ms',
+    transitionTimingFunction: 'ease-out',
+  },
+  cardHovered: {
+    borderColor: colors.accent,
+    transform: [{ translateY: -4 }],
+    boxShadow: '0 12px 24px -12px rgba(51, 50, 47, 0.18)',
   },
   cardHalf: {
     width: `calc(50% - ${spacing.lg / 2}px)`,
