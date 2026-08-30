@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, Pressable, StyleSheet, Linking, useWindowDimensions } from 'react-native';
 import { colors, spacing, typography, breakpoints } from '../theme';
 import { profile } from '../data';
@@ -40,10 +40,27 @@ function Button({ label, onPress, primary }) {
 export function Hero() {
   const { width } = useWindowDimensions();
   const isMobile = width < breakpoints.mobile;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   return (
     <View nativeID="top" style={[styles.wrapper, { paddingHorizontal: isMobile ? spacing.lg : spacing.xxl }]}>
-      <View style={styles.inner}>
+      <View
+        style={[
+          styles.inner,
+          {
+            opacity: mounted ? 1 : 0,
+            transform: [{ translateY: mounted ? 0 : 14 }],
+            transitionProperty: 'opacity, transform',
+            transitionDuration: '600ms',
+            transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          },
+        ]}
+      >
         <Avatar size={isMobile ? 84 : 112} />
         <Text style={styles.kicker}>Full-Stack &amp; AI/ML Engineer</Text>
         <Text style={[styles.name, isMobile && styles.nameMobile]}>{profile.name}</Text>
