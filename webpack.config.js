@@ -10,7 +10,10 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: 'static/js/bundle.[contenthash:8].js',
-      publicPath: '/',
+      // Relative (not '/'): this site is deployed as a GitHub Pages *project*
+      // page under /divyanshupandey.github.io/, not at the domain root, since
+      // the repo name doesn't match the owner's username exactly.
+      publicPath: '',
       clean: true,
     },
     resolve: {

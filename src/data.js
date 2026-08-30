@@ -5,8 +5,10 @@ export const profile = {
   email: 'pdivyanshu918@gmail.com',
   linkedin: 'https://linkedin.com/in/divyanshupandey18',
   github: 'https://github.com/divyanshuxpandey',
-  resumeUrl: '/Divyanshu_Pandey_Resume.pdf',
-  // Drop a photo at public/avatar.jpg and set this to '/avatar.jpg' to show it in the hero.
+  // Relative (no leading slash): this deploys under a GitHub Pages project
+  // subpath (/divyanshupandey.github.io/), not the domain root.
+  resumeUrl: 'Divyanshu_Pandey_Resume.pdf',
+  // Drop a photo at public/avatar.jpg and set this to 'avatar.jpg' to show it in the hero.
   photoUrl: null,
   initials: 'DP',
   summary:
