@@ -1,28 +1,31 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { colors, spacing, typography } from '../theme';
+import { spacing, typography } from '../theme';
+import { useTheme } from '../ThemeContext';
 import { Section, SectionHeading } from './Section';
 import { experience } from '../data';
 
 function ExperienceItem({ item, isLast }) {
+  const { colors } = useTheme();
+
   return (
     <View style={styles.item}>
       <View style={styles.railColumn}>
-        <View style={styles.dot} />
-        {!isLast ? <View style={styles.line} /> : null}
+        <View style={[styles.dot, { backgroundColor: colors.accent }]} />
+        {!isLast ? <View style={[styles.line, { backgroundColor: colors.border }]} /> : null}
       </View>
       <View style={styles.content}>
         <View style={styles.headRow}>
-          <Text style={styles.role}>{item.role}</Text>
-          <Text style={styles.period}>{item.period}</Text>
+          <Text style={[styles.role, { color: colors.textPrimary }]}>{item.role}</Text>
+          <Text style={[styles.period, { color: colors.textMuted }]}>{item.period}</Text>
         </View>
-        <Text style={styles.company}>
+        <Text style={[styles.company, { color: colors.accent }]}>
           {item.company} · {item.location}
         </Text>
         {item.bullets.map((bullet, i) => (
           <View key={i} style={styles.bulletRow}>
-            <Text style={styles.bulletMark}>—</Text>
-            <Text style={styles.bulletText}>{bullet}</Text>
+            <Text style={[styles.bulletMark, { color: colors.textMuted }]}>—</Text>
+            <Text style={[styles.bulletText, { color: colors.textSecondary }]}>{bullet}</Text>
           </View>
         ))}
       </View>
@@ -55,14 +58,16 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: colors.accent,
     marginTop: 6,
+    transitionProperty: 'background-color',
+    transitionDuration: '300ms',
   },
   line: {
     flex: 1,
     width: 1,
-    backgroundColor: colors.border,
     marginTop: 4,
+    transitionProperty: 'background-color',
+    transitionDuration: '300ms',
   },
   content: {
     flex: 1,
@@ -79,36 +84,41 @@ const styles = StyleSheet.create({
     fontFamily: typography.fontFamily,
     fontSize: 18,
     fontWeight: '700',
-    color: colors.textPrimary,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   period: {
     fontFamily: typography.fontFamily,
     fontSize: 13,
-    color: colors.textMuted,
     fontWeight: '500',
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   company: {
     fontFamily: typography.fontFamily,
     fontSize: 14,
-    color: colors.accent,
     fontWeight: '600',
     marginTop: 2,
     marginBottom: spacing.md,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   bulletRow: {
     flexDirection: 'row',
     marginBottom: spacing.sm,
   },
   bulletMark: {
-    color: colors.textMuted,
     marginRight: spacing.sm,
     fontFamily: typography.fontFamily,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   bulletText: {
     flex: 1,
     fontFamily: typography.fontFamily,
     fontSize: 15,
     lineHeight: 23,
-    color: colors.textSecondary,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
 });

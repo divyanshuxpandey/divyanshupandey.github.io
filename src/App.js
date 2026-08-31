@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { colors } from './theme';
+import { ThemeProvider, useTheme } from './ThemeContext';
 import { NavBar } from './components/NavBar';
 import { Hero } from './components/Hero';
 import { Experience } from './components/Experience';
@@ -9,9 +9,11 @@ import { Skills } from './components/Skills';
 import { EducationAchievements } from './components/EducationAchievements';
 import { Footer } from './components/Footer';
 
-export default function App() {
+function AppShell() {
+  const { colors } = useTheme();
+
   return (
-    <View style={styles.app}>
+    <View style={[styles.app, { backgroundColor: colors.background }]}>
       <NavBar />
       <Hero />
       <Experience />
@@ -23,10 +25,19 @@ export default function App() {
   );
 }
 
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppShell />
+    </ThemeProvider>
+  );
+}
+
 const styles = StyleSheet.create({
   app: {
     flex: 1,
     width: '100%',
-    backgroundColor: colors.background,
+    transitionProperty: 'background-color',
+    transitionDuration: '300ms',
   },
 });

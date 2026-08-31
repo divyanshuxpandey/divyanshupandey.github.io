@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, useWindowDimensions } from 'react-native';
-import { colors, spacing, typography, breakpoints } from '../theme';
+import { spacing, typography, breakpoints } from '../theme';
+import { useTheme } from '../ThemeContext';
+import { ThemeControls } from './ThemeControls';
 
 const LINKS = [
   { id: 'experience', label: 'Experience' },
@@ -42,15 +44,23 @@ function useActiveSection() {
 
 export function NavBar() {
   const { width } = useWindowDimensions();
+  const { colors } = useTheme();
   const isMobile = width < breakpoints.tablet;
   const [open, setOpen] = useState(false);
   const activeId = useActiveSection();
 
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper, { backgroundColor: colors.background, borderBottomColor: colors.border }]}>
       <View style={[styles.bar, { paddingHorizontal: isMobile ? spacing.lg : spacing.xxl }]}>
-        <Pressable onPress={() => scrollToId('top')} style={styles.brand} accessibilityRole="link" accessibilityLabel="Back to top">
-          <Text style={styles.brandText}>DP</Text>
+        <Pressable
+          onPress={() => scrollToId('top')}
+          style={[styles.brand, { backgroundColor: colors.accent }]}
+          accessibilityRole="link"
+          accessibilityLabel="Back to top"
+        >
+          {/* Fixed white, not colors.surface: it sits on the accent color,
+              which stays a dark/mid tone in both light and dark mode. */}
+          <Text style={[styles.brandText, { color: '#FFFFFF' }]}>DP</Text>
         </Pressable>
 
         {isMobile ? (
@@ -61,9 +71,9 @@ export function NavBar() {
             accessibilityLabel="Toggle navigation menu"
             accessibilityState={{ expanded: open }}
           >
-            <View style={styles.menuLine} />
-            <View style={styles.menuLine} />
-            <View style={styles.menuLine} />
+            <View style={[styles.menuLine, { backgroundColor: colors.textPrimary }]} />
+            <View style={[styles.menuLine, { backgroundColor: colors.textPrimary }]} />
+            <View style={[styles.menuLine, { backgroundColor: colors.textPrimary }]} />
           </Pressable>
         ) : (
           <View style={styles.links}>
@@ -73,13 +83,16 @@ export function NavBar() {
                 <Pressable
                   key={link.id}
                   onPress={() => scrollToId(link.id)}
-                  style={[styles.linkItem, active && styles.linkItemActive]}
+                  style={[styles.linkItem, { borderBottomColor: active ? colors.accent : 'transparent' }]}
                   accessibilityRole="link"
                 >
-                  <Text style={[styles.linkText, active && styles.linkTextActive]}>{link.label}</Text>
+                  <Text style={[styles.linkText, { color: active ? colors.accent : colors.textSecondary, fontWeight: active ? '700' : '500' }]}>
+                    {link.label}
+                  </Text>
                 </Pressable>
               );
             })}
+            <ThemeControls />
           </View>
         )}
       </View>
@@ -98,10 +111,13 @@ export function NavBar() {
                 style={styles.mobileLinkItem}
                 accessibilityRole="link"
               >
-                <Text style={[styles.linkText, active && styles.linkTextActive]}>{link.label}</Text>
+                <Text style={[styles.linkText, { color: active ? colors.accent : colors.textSecondary, fontWeight: active ? '700' : '500' }]}>
+                  {link.label}
+                </Text>
               </Pressable>
             );
           })}
+          <ThemeControls compact />
         </View>
       ) : null}
     </View>
@@ -114,10 +130,9 @@ const styles = StyleSheet.create({
     top: 0,
     zIndex: 20,
     width: '100%',
-    backgroundColor: 'rgba(250,249,246,0.9)',
     borderBottomWidth: 1,
-    borderBottomColor: colors.border,
-    backdropFilter: 'blur(8px)',
+    transitionProperty: 'background-color, border-color',
+    transitionDuration: '300ms',
   },
   bar: {
     width: '100%',
@@ -133,12 +148,12 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 8,
-    backgroundColor: colors.accent,
     alignItems: 'center',
     justifyContent: 'center',
+    transitionProperty: 'background-color',
+    transitionDuration: '300ms',
   },
   brandText: {
-    color: colors.surface,
     fontFamily: typography.fontFamily,
     fontWeight: '700',
     fontSize: 14,
@@ -152,24 +167,14 @@ const styles = StyleSheet.create({
     marginLeft: spacing.lg,
     paddingBottom: 4,
     borderBottomWidth: 2,
-    borderBottomColor: 'transparent',
     transitionProperty: 'border-color',
     transitionDuration: '250ms',
-  },
-  linkItemActive: {
-    borderBottomColor: colors.accent,
   },
   linkText: {
     fontFamily: typography.fontFamily,
     fontSize: 14,
-    color: colors.textSecondary,
-    fontWeight: '500',
     transitionProperty: 'color',
     transitionDuration: '250ms',
-  },
-  linkTextActive: {
-    color: colors.accent,
-    fontWeight: '700',
   },
   menuButton: {
     width: 28,
@@ -178,8 +183,9 @@ const styles = StyleSheet.create({
   },
   menuLine: {
     height: 2,
-    backgroundColor: colors.textPrimary,
     borderRadius: 1,
+    transitionProperty: 'background-color',
+    transitionDuration: '300ms',
   },
   mobileMenu: {
     paddingHorizontal: spacing.lg,

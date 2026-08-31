@@ -1,19 +1,5 @@
-// Subtle, muted palette — warm neutrals with a single restrained accent.
-export const colors = {
-  background: '#FBFAF7',
-  surface: '#FFFFFF',
-  surfaceAlt: '#F3F1EC',
-  border: '#E9E6DE',
-  textPrimary: '#33322F',
-  textSecondary: '#726F67',
-  textMuted: '#939086',
-  accent: '#5B7A73',
-  accentSoft: '#E9EFEC',
-  accentDeep: '#42615B',
-  tagBackground: '#F1EEE6',
-  tagText: '#6B6858',
-};
-
+// Color tokens live in ThemeContext.js (useTheme()) since they respond to
+// the visitor's palette + light/dark choice. Everything below is static.
 export const spacing = {
   xs: 4,
   sm: 8,

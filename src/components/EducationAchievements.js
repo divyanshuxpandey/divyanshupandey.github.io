@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet, useWindowDimensions } from 'react-native';
-import { colors, spacing, radius, typography, breakpoints } from '../theme';
+import { spacing, radius, typography, breakpoints } from '../theme';
+import { useTheme } from '../ThemeContext';
 import { Section, SectionHeading } from './Section';
 import { education, achievements } from '../data';
 
 export function EducationAchievements() {
   const { width } = useWindowDimensions();
+  const { colors } = useTheme();
   const isMobile = width < breakpoints.mobile;
 
   return (
@@ -16,13 +18,18 @@ export function EducationAchievements() {
           style={({ hovered }) => [
             styles.card,
             isMobile ? styles.cardMobile : styles.cardHalf,
-            hovered && styles.cardHovered,
+            { backgroundColor: colors.surface, borderColor: colors.border },
+            hovered && {
+              borderColor: colors.accent,
+              transform: [{ translateY: -4 }],
+              boxShadow: '0 12px 24px -12px rgba(0,0,0,0.18)',
+            },
           ]}
         >
-          <Text style={styles.cardLabel}>Education</Text>
-          <Text style={styles.degree}>{education.degree}</Text>
-          <Text style={styles.school}>{education.school}</Text>
-          <Text style={styles.meta}>
+          <Text style={[styles.cardLabel, { color: colors.accent }]}>Education</Text>
+          <Text style={[styles.degree, { color: colors.textPrimary }]}>{education.degree}</Text>
+          <Text style={[styles.school, { color: colors.textSecondary }]}>{education.school}</Text>
+          <Text style={[styles.meta, { color: colors.textMuted }]}>
             {education.location} · {education.period}
           </Text>
         </Pressable>
@@ -31,14 +38,19 @@ export function EducationAchievements() {
           style={({ hovered }) => [
             styles.card,
             isMobile ? styles.cardMobile : styles.cardHalf,
-            hovered && styles.cardHovered,
+            { backgroundColor: colors.surface, borderColor: colors.border },
+            hovered && {
+              borderColor: colors.accent,
+              transform: [{ translateY: -4 }],
+              boxShadow: '0 12px 24px -12px rgba(0,0,0,0.18)',
+            },
           ]}
         >
-          <Text style={styles.cardLabel}>Achievements</Text>
+          <Text style={[styles.cardLabel, { color: colors.accent }]}>Achievements</Text>
           {achievements.map((line, i) => (
             <View key={i} style={styles.achievementRow}>
-              <Text style={styles.achievementMark}>▸</Text>
-              <Text style={styles.achievementText}>{line}</Text>
+              <Text style={[styles.achievementMark, { color: colors.accent }]}>▸</Text>
+              <Text style={[styles.achievementText, { color: colors.textSecondary }]}>{line}</Text>
             </View>
           ))}
         </Pressable>
@@ -56,21 +68,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   card: {
-    backgroundColor: colors.surface,
     borderRadius: radius.lg,
     borderWidth: 1,
-    borderColor: colors.border,
     padding: spacing.lg,
     cursor: 'default',
     transform: [{ translateY: 0 }],
-    transitionProperty: 'transform, box-shadow, border-color',
+    transitionProperty: 'transform, box-shadow, border-color, background-color',
     transitionDuration: '250ms',
     transitionTimingFunction: 'ease-out',
-  },
-  cardHovered: {
-    borderColor: colors.accent,
-    transform: [{ translateY: -4 }],
-    boxShadow: '0 12px 24px -12px rgba(51, 50, 47, 0.18)',
   },
   cardHalf: {
     width: `calc(50% - ${spacing.lg / 2}px)`,
@@ -84,43 +89,49 @@ const styles = StyleSheet.create({
     fontSize: 12,
     letterSpacing: 1.5,
     textTransform: 'uppercase',
-    color: colors.accent,
     fontWeight: '700',
     marginBottom: spacing.md,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   degree: {
     fontFamily: typography.fontFamily,
     fontSize: 16,
     fontWeight: '700',
-    color: colors.textPrimary,
     lineHeight: 22,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   school: {
     fontFamily: typography.fontFamily,
     fontSize: 14,
-    color: colors.textSecondary,
     marginTop: spacing.xs,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   meta: {
     fontFamily: typography.fontFamily,
     fontSize: 13,
-    color: colors.textMuted,
     marginTop: spacing.xs,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   achievementRow: {
     flexDirection: 'row',
     marginBottom: spacing.sm,
   },
   achievementMark: {
-    color: colors.accent,
     marginRight: spacing.sm,
     fontFamily: typography.fontFamily,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   achievementText: {
     flex: 1,
     fontFamily: typography.fontFamily,
     fontSize: 14,
     lineHeight: 21,
-    color: colors.textSecondary,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
 });

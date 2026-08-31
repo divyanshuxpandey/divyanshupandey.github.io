@@ -18,30 +18,37 @@ export const profile = {
 export const skillGroups = [
   {
     title: 'Frontend Development',
+    icon: 'code',
     items: ['React.js', 'Next.js (App Router)', 'React Native / React Native Web', 'Tailwind CSS', 'SSR', 'Responsive UI'],
   },
   {
     title: 'State & Data',
+    icon: 'layers',
     items: ['Redux Toolkit', 'Zustand', 'React Query', 'Client-side state management'],
   },
   {
     title: 'Backend & APIs',
+    icon: 'server',
     items: ['Node.js', 'Express', 'TypeScript', 'GraphQL', 'REST API design', 'Microservices'],
   },
   {
     title: 'AI / ML Integration',
+    icon: 'spark',
     items: ['LLMs', 'Azure OpenAI', 'LangChain', 'LlamaIndex', 'RAG', 'Prompt Engineering', 'Vector Search', 'HuggingFace', 'PyTorch', 'TensorFlow'],
   },
   {
     title: 'Cloud Infrastructure',
+    icon: 'cloud',
     items: ['Azure App Services', 'Azure Functions', 'AKS', 'Cognitive Services', 'AWS (EC2, S3, Lambda, SageMaker)', 'Docker', 'Kubernetes', 'GitHub Actions / Jenkins'],
   },
   {
     title: 'Database Systems',
+    icon: 'database',
     items: ['PostgreSQL', 'NoSQL', 'Azure Cosmos DB', 'Pinecone', 'Airflow'],
   },
   {
     title: 'Languages & Tools',
+    icon: 'terminal',
     items: ['Python', 'TypeScript / JavaScript', 'SQL', 'Go', 'C++', 'Bash', 'Git'],
   },
 ];
@@ -87,6 +94,7 @@ export const projects = [
   {
     name: 'mMARS',
     subtitle: 'Multi-Modal AI Research Automation System',
+    icon: 'network',
     stack: ['Python', 'LLMs', 'LangChain', 'RAG', 'AWS'],
     description:
       'An LLM-driven pipeline with Retrieval-Augmented Generation for multi-format data extraction; modular workflows with prompt orchestration, embeddings, and vector-based semantic retrieval.',
@@ -94,6 +102,7 @@ export const projects = [
   {
     name: 'PIDV',
     subtitle: 'Person Identification & Verification via ML',
+    icon: 'eye',
     stack: ['Python', 'OpenCV', 'YOLOv4', 'TensorFlow'],
     description:
       'A computer-vision system combining face detection (Haar Cascade), age/gender estimation, and YOLOv4-tiny object detection to identify individuals and estimate inter-person proximity from live camera feeds for social-distancing and smart-environment use cases.',
@@ -101,6 +110,7 @@ export const projects = [
   {
     name: 'Duplicate Question Detection',
     subtitle: 'Semantic Similarity with Transformer Embeddings',
+    icon: 'compare',
     stack: ['NLP', 'DistilBERT', 'Scikit-learn', 'HuggingFace'],
     description:
       'A semantic similarity system — Bag-of-Words + Random Forest reaching 81.67% accuracy, and a fine-tuned DistilBERT model reaching 89.89% accuracy — using transformer-based embeddings.',

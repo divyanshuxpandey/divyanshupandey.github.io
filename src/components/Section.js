@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
-import { colors, spacing, typography, breakpoints } from '../theme';
+import { spacing, typography, breakpoints } from '../theme';
+import { useTheme } from '../ThemeContext';
 import { useInView } from '../hooks/useInView';
 
 export function Section({ id, children, style, alt }) {
   const { width } = useWindowDimensions();
+  const { colors } = useTheme();
   const isMobile = width < breakpoints.mobile;
   const [ref, inView] = useInView();
 
@@ -13,7 +15,7 @@ export function Section({ id, children, style, alt }) {
       nativeID={id}
       style={[
         styles.section,
-        alt && styles.sectionAlt,
+        alt && { backgroundColor: colors.surfaceAlt },
         { paddingHorizontal: isMobile ? spacing.lg : spacing.xxl },
         style,
       ]}
@@ -25,8 +27,8 @@ export function Section({ id, children, style, alt }) {
           {
             opacity: inView ? 1 : 0,
             transform: [{ translateY: inView ? 0 : 20 }],
-            transitionProperty: 'opacity, transform',
-            transitionDuration: '700ms',
+            transitionProperty: 'opacity, transform, background-color',
+            transitionDuration: '700ms, 700ms, 300ms',
             transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
           },
         ]}
@@ -38,11 +40,13 @@ export function Section({ id, children, style, alt }) {
 }
 
 export function SectionHeading({ eyebrow, title }) {
+  const { colors } = useTheme();
+
   return (
     <View style={styles.headingBlock}>
-      {eyebrow ? <Text style={styles.eyebrow}>{eyebrow}</Text> : null}
-      <Text style={styles.title}>{title}</Text>
-      <View style={styles.rule} />
+      {eyebrow ? <Text style={[styles.eyebrow, { color: colors.accent }]}>{eyebrow}</Text> : null}
+      <Text style={[styles.title, { color: colors.textPrimary }]}>{title}</Text>
+      <View style={[styles.rule, { backgroundColor: colors.accent }]} />
     </View>
   );
 }
@@ -52,9 +56,8 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: spacing.xxl,
     alignItems: 'center',
-  },
-  sectionAlt: {
-    backgroundColor: colors.surfaceAlt,
+    transitionProperty: 'background-color',
+    transitionDuration: '300ms',
   },
   inner: {
     width: '100%',
@@ -68,21 +71,24 @@ const styles = StyleSheet.create({
     fontSize: 13,
     letterSpacing: 2,
     textTransform: 'uppercase',
-    color: colors.accent,
     fontWeight: '600',
     marginBottom: spacing.sm,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   title: {
     fontFamily: typography.serifFamily,
     fontSize: 30,
-    color: colors.textPrimary,
     fontWeight: '600',
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   rule: {
     width: 44,
     height: 3,
-    backgroundColor: colors.accent,
     borderRadius: 2,
     marginTop: spacing.md,
+    transitionProperty: 'background-color',
+    transitionDuration: '300ms',
   },
 });
