@@ -187,6 +187,26 @@ export function CompareIcon({ size = 24, color = '#000' }) {
   );
 }
 
+export function GitHubIcon({ size = 18, color = '#000' }) {
+  return (
+    <svg {...base(size)} fill={color}>
+      <path d="M12 1.6a10.4 10.4 0 0 0-3.29 20.27c.52.1.71-.22.71-.5v-1.95c-2.9.63-3.51-1.24-3.51-1.24-.47-1.2-1.16-1.52-1.16-1.52-.95-.65.07-.64.07-.64 1.05.07 1.6 1.08 1.6 1.08.93 1.6 2.44 1.14 3.04.87.09-.67.36-1.14.66-1.4-2.32-.26-4.75-1.16-4.75-5.16 0-1.14.4-2.07 1.07-2.8-.11-.26-.47-1.33.1-2.77 0 0 .88-.28 2.88 1.07a9.9 9.9 0 0 1 5.24 0c2-1.35 2.87-1.07 2.87-1.07.58 1.44.22 2.51.11 2.77.67.73 1.07 1.66 1.07 2.8 0 4.01-2.44 4.9-4.77 5.15.37.32.7.96.7 1.94v2.87c0 .28.19.61.72.5A10.4 10.4 0 0 0 12 1.6Z" />
+    </svg>
+  );
+}
+
+export function GlobeIcon({ size = 24, color = '#000' }) {
+  return (
+    <svg {...base(size)}>
+      <circle cx="12" cy="12" r="9" stroke={color} strokeWidth="1.6" />
+      <ellipse cx="12" cy="12" rx="4" ry="9" stroke={color} strokeWidth="1.6" />
+      <line x1="3" y1="12" x2="21" y2="12" stroke={color} strokeWidth="1.6" />
+      <path d="M5 6.5c1.8 1.3 4.3 2 7 2s5.2-.7 7-2" stroke={color} strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M5 17.5c1.8-1.3 4.3-2 7-2s5.2.7 7 2" stroke={color} strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function BlobShape({ size = 420, color = '#000', opacity = 1 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 420 420" fill="none">

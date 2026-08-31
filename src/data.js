@@ -95,6 +95,7 @@ export const projects = [
     name: 'mMARS',
     subtitle: 'Multi-Modal AI Research Automation System',
     icon: 'network',
+    github: 'https://github.com/divyanshuxpandey/mMARS-multi_Modal_AI_research_software',
     stack: ['Python', 'LLMs', 'LangChain', 'RAG', 'AWS'],
     description:
       'An LLM-driven pipeline with Retrieval-Augmented Generation for multi-format data extraction; modular workflows with prompt orchestration, embeddings, and vector-based semantic retrieval.',
@@ -103,6 +104,7 @@ export const projects = [
     name: 'PIDV',
     subtitle: 'Person Identification & Verification via ML',
     icon: 'eye',
+    github: 'https://github.com/divyanshuxpandey/PIDV_using_ML',
     stack: ['Python', 'OpenCV', 'YOLOv4', 'TensorFlow'],
     description:
       'A computer-vision system combining face detection (Haar Cascade), age/gender estimation, and YOLOv4-tiny object detection to identify individuals and estimate inter-person proximity from live camera feeds for social-distancing and smart-environment use cases.',
@@ -114,6 +116,15 @@ export const projects = [
     stack: ['NLP', 'DistilBERT', 'Scikit-learn', 'HuggingFace'],
     description:
       'A semantic similarity system — Bag-of-Words + Random Forest reaching 81.67% accuracy, and a fine-tuned DistilBERT model reaching 89.89% accuracy — using transformer-based embeddings.',
+  },
+  {
+    name: 'Language Translator',
+    subtitle: 'Ollama-Powered Translation Web App',
+    icon: 'globe',
+    github: 'https://github.com/divyanshuxpandey/Language_translation_using_ollama',
+    stack: ['Python', 'Streamlit', 'LangChain', 'Ollama'],
+    description:
+      'A Streamlit web app for real-time text translation, using LangChain to orchestrate prompts and output parsing over a locally-run Llama model served through Ollama.',
   },
 ];
 
