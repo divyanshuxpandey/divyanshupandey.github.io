@@ -9,6 +9,13 @@
       content="Divyanshu Pandey — Full-stack software engineer building AI-driven web applications with React, Node.js, and production LLM/RAG integrations."
     />
     <meta name="theme-color" content="#FAF9F6" />
+    <!-- The JS bundle filename changes hash on every deploy, so this HTML
+         document itself must never be served stale from cache — otherwise
+         a cached page can reference a bundle file that no longer exists
+         in the latest deployment and the app fails to load silently. -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 
     <meta property="og:title" content="Divyanshu Pandey — Software Development Engineer" />
     <meta
@@ -41,5 +48,22 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Self-heal against a stale cached copy of this page pointing at a JS
+      // bundle filename that no longer exists after a newer deploy (the
+      // bundle's hashed name changes every build, so a 404 on it just
+      // leaves #root empty with no visible error). If nothing has mounted
+      // after a few seconds, force one reload to fetch the current HTML.
+      (function () {
+        var RELOAD_GUARD = 'portfolio-reload-once';
+        setTimeout(function () {
+          var root = document.getElementById('root');
+          if (root && root.children.length === 0 && !sessionStorage.getItem(RELOAD_GUARD)) {
+            sessionStorage.setItem(RELOAD_GUARD, '1');
+            location.reload();
+          }
+        }, 3000);
+      })();
+    </script>
   </body>
 </html>
