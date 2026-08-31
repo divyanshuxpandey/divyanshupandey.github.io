@@ -8,8 +8,7 @@ export const profile = {
   // Relative (no leading slash): this deploys under a GitHub Pages project
   // subpath (/divyanshupandey.github.io/), not the domain root.
   resumeUrl: 'Divyanshu_Pandey_Resume.pdf',
-  // Drop a photo at public/avatar.jpg and set this to 'avatar.jpg' to show it in the hero.
-  photoUrl: null,
+  photoUrl: 'avatar.jpg',
   initials: 'DP',
   summary:
     'Full-stack developer who builds and deploys AI-driven web applications, connecting machine learning models to intuitive user interfaces. Experience across Node.js/GraphQL/REST APIs, SQL and NoSQL data layers, and server-side rendering frontend architecture, paired with production LLM integration — RAG, LangChain, vector search — on AWS and Azure. Currently shipping full-stack features on a live React Native Web + Node.js SaaS platform. B.Tech in Robotics and AI; top-ranked in Meta HackerCup and Codeforces.',

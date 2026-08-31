@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, useWindowDimensions } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet, useWindowDimensions } from 'react-native';
 import { spacing, typography, breakpoints } from '../theme';
 import { useTheme } from '../ThemeContext';
 import { ThemeControls } from './ThemeControls';
+import { profile } from '../data';
 
 const LINKS = [
   { id: 'experience', label: 'Experience' },
@@ -58,9 +59,13 @@ export function NavBar() {
           accessibilityRole="link"
           accessibilityLabel="Back to top"
         >
-          {/* Fixed white, not colors.surface: it sits on the accent color,
-              which stays a dark/mid tone in both light and dark mode. */}
-          <Text style={[styles.brandText, { color: '#FFFFFF' }]}>DP</Text>
+          {profile.photoUrl ? (
+            <Image source={{ uri: profile.photoUrl }} style={styles.brandPhoto} accessibilityLabel={profile.name} />
+          ) : (
+            // Fixed white, not colors.surface: it sits on the accent color,
+            // which stays a dark/mid tone in both light and dark mode.
+            <Text style={[styles.brandText, { color: '#FFFFFF' }]}>DP</Text>
+          )}
         </Pressable>
 
         {isMobile ? (
@@ -150,8 +155,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
     transitionProperty: 'background-color',
     transitionDuration: '300ms',
+  },
+  brandPhoto: {
+    width: 36,
+    height: 36,
   },
   brandText: {
     fontFamily: typography.fontFamily,
