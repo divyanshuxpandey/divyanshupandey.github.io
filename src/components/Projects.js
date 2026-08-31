@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet, useWindowDimensions } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Linking, useWindowDimensions } from 'react-native';
 import { spacing, radius, typography, breakpoints } from '../theme';
 import { useTheme } from '../ThemeContext';
 import { Section, SectionHeading } from './Section';
 import { Tag } from './Tag';
-import { NetworkIcon, EyeIcon, CompareIcon } from './icons';
+import { NetworkIcon, EyeIcon, CompareIcon, GlobeIcon, GitHubIcon } from './icons';
 import { projects } from '../data';
 
-const PROJECT_ICONS = { network: NetworkIcon, eye: EyeIcon, compare: CompareIcon };
+const PROJECT_ICONS = { network: NetworkIcon, eye: EyeIcon, compare: CompareIcon, globe: GlobeIcon };
 
 function ProjectCard({ project, cardWidth }) {
   const { colors } = useTheme();
@@ -21,11 +21,24 @@ function ProjectCard({ project, cardWidth }) {
         hovered && { borderColor: colors.accent, transform: [{ translateY: -4 }], boxShadow: '0 12px 24px -12px rgba(0,0,0,0.18)' },
       ]}
     >
-      {Icon ? (
-        <View style={[styles.iconBadge, { backgroundColor: colors.accentSoft }]}>
-          <Icon size={20} color={colors.accentDeep} />
-        </View>
-      ) : null}
+      <View style={styles.headRow}>
+        {Icon ? (
+          <View style={[styles.iconBadge, { backgroundColor: colors.accentSoft }]}>
+            <Icon size={20} color={colors.accentDeep} />
+          </View>
+        ) : null}
+        {project.github ? (
+          <Pressable
+            onPress={() => Linking.openURL(project.github)}
+            accessibilityRole="link"
+            accessibilityLabel={`View ${project.name} on GitHub`}
+            style={({ hovered }) => [styles.githubButton, { borderColor: colors.border }, hovered && { borderColor: colors.accent }]}
+          >
+            <GitHubIcon size={14} color={colors.textSecondary} />
+            <Text style={[styles.githubButtonLabel, { color: colors.textSecondary }]}>Code</Text>
+          </Pressable>
+        ) : null}
+      </View>
       <Text style={[styles.name, { color: colors.textPrimary }]}>{project.name}</Text>
       <Text style={[styles.subtitle, { color: colors.accent }]}>{project.subtitle}</Text>
       <Text style={[styles.description, { color: colors.textSecondary }]}>{project.description}</Text>
@@ -75,15 +88,37 @@ const styles = StyleSheet.create({
     transitionDuration: '250ms',
     transitionTimingFunction: 'ease-out',
   },
+  headRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: spacing.md,
+  },
   iconBadge: {
     width: 40,
     height: 40,
     borderRadius: radius.md,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: spacing.md,
     transitionProperty: 'background-color',
     transitionDuration: '300ms',
+  },
+  githubButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: radius.sm,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    cursor: 'pointer',
+    transitionProperty: 'border-color',
+    transitionDuration: '200ms',
+  },
+  githubButtonLabel: {
+    fontFamily: typography.fontFamily,
+    fontSize: 12,
+    fontWeight: '600',
+    marginLeft: 6,
   },
   name: {
     fontFamily: typography.serifFamily,
