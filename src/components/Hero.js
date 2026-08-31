@@ -1,44 +1,76 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, Pressable, StyleSheet, Linking, useWindowDimensions } from 'react-native';
-import { colors, spacing, typography, breakpoints } from '../theme';
+import { spacing, typography, breakpoints } from '../theme';
+import { useTheme } from '../ThemeContext';
 import { profile } from '../data';
+import { BlobShape } from './icons';
 
 function Avatar({ size }) {
+  const { colors } = useTheme();
+
   return (
-    <View style={[styles.avatar, { width: size, height: size, borderRadius: size / 2 }]}>
-      {profile.photoUrl ? (
-        <Image
-          source={{ uri: profile.photoUrl }}
-          style={{ width: size, height: size, borderRadius: size / 2 }}
-          accessibilityLabel={profile.name}
-        />
-      ) : (
-        <Text style={[styles.avatarInitials, { fontSize: size * 0.36 }]}>{profile.initials}</Text>
-      )}
+    <View style={styles.avatarWrap}>
+      <View style={styles.blobBehind} pointerEvents="none">
+        <BlobShape size={size * 1.9} color={colors.accent} opacity={0.14} />
+      </View>
+      <View
+        style={[
+          styles.avatar,
+          {
+            width: size,
+            height: size,
+            borderRadius: size / 2,
+            backgroundColor: colors.accentSoft,
+            borderColor: colors.border,
+          },
+        ]}
+      >
+        {profile.photoUrl ? (
+          <Image
+            source={{ uri: profile.photoUrl }}
+            style={{ width: size, height: size, borderRadius: size / 2 }}
+            accessibilityLabel={profile.name}
+          />
+        ) : (
+          <Text style={[styles.avatarInitials, { fontSize: size * 0.36, color: colors.accentDeep }]}>
+            {profile.initials}
+          </Text>
+        )}
+      </View>
     </View>
   );
 }
 
 function Button({ label, onPress, primary }) {
+  const { colors } = useTheme();
+
   return (
     <Pressable
       onPress={onPress}
       accessibilityRole="link"
       style={({ hovered }) => [
         styles.button,
-        primary ? styles.buttonPrimary : styles.buttonGhost,
-        hovered && (primary ? styles.buttonPrimaryHover : styles.buttonGhostHover),
+        primary
+          ? {
+              backgroundColor: hovered ? colors.accentDeep : colors.accent,
+              borderColor: hovered ? colors.accentDeep : colors.accent,
+            }
+          : {
+              backgroundColor: hovered ? colors.surfaceAlt : 'transparent',
+              borderColor: hovered ? colors.accent : colors.border,
+            },
       ]}
     >
-      <Text style={[styles.buttonLabel, primary ? styles.buttonLabelPrimary : styles.buttonLabelGhost]}>
-        {label}
-      </Text>
+      {/* Fixed white, not colors.surface: it sits on the accent color, which
+          stays a dark/mid tone in both light and dark mode. */}
+      <Text style={[styles.buttonLabel, { color: primary ? '#FFFFFF' : colors.textPrimary }]}>{label}</Text>
     </Pressable>
   );
 }
 
 export function Hero() {
   const { width } = useWindowDimensions();
+  const { colors } = useTheme();
   const isMobile = width < breakpoints.mobile;
   const [mounted, setMounted] = useState(false);
 
@@ -62,11 +94,13 @@ export function Hero() {
         ]}
       >
         <Avatar size={isMobile ? 84 : 112} />
-        <Text style={styles.kicker}>Full-Stack &amp; AI/ML Engineer</Text>
-        <Text style={[styles.name, isMobile && styles.nameMobile]}>{profile.name}</Text>
-        <Text style={styles.title}>{profile.title}</Text>
-        <Text style={styles.location}>{profile.location}</Text>
-        <Text style={styles.summary}>{profile.summary}</Text>
+        <Text style={[styles.kicker, { color: colors.accent }]}>Full-Stack &amp; AI/ML Engineer</Text>
+        <Text style={[styles.name, isMobile && styles.nameMobile, { color: colors.textPrimary }]}>
+          {profile.name}
+        </Text>
+        <Text style={[styles.title, { color: colors.textPrimary }]}>{profile.title}</Text>
+        <Text style={[styles.location, { color: colors.textMuted }]}>{profile.location}</Text>
+        <Text style={[styles.summary, { color: colors.textSecondary }]}>{profile.summary}</Text>
 
         <View style={[styles.actions, isMobile && styles.actionsMobile]}>
           <Button
@@ -84,19 +118,29 @@ export function Hero() {
 }
 
 const styles = StyleSheet.create({
+  avatarWrap: {
+    position: 'relative',
+    marginBottom: spacing.lg,
+  },
+  blobBehind: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
+  },
   avatar: {
-    backgroundColor: colors.accentSoft,
     borderWidth: 1,
-    borderColor: colors.border,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    marginBottom: spacing.lg,
+    transitionProperty: 'background-color, border-color',
+    transitionDuration: '300ms',
   },
   avatarInitials: {
     fontFamily: typography.serifFamily,
     fontWeight: '600',
-    color: colors.accentDeep,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   wrapper: {
     width: '100%',
@@ -113,16 +157,18 @@ const styles = StyleSheet.create({
     fontSize: 13,
     letterSpacing: 2,
     textTransform: 'uppercase',
-    color: colors.accent,
     fontWeight: '600',
     marginBottom: spacing.md,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   name: {
     fontFamily: typography.serifFamily,
     fontSize: 52,
     fontWeight: '600',
-    color: colors.textPrimary,
     marginBottom: spacing.sm,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   nameMobile: {
     fontSize: 36,
@@ -130,22 +176,25 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: typography.fontFamily,
     fontSize: 19,
-    color: colors.textPrimary,
     fontWeight: '500',
     marginBottom: spacing.xs,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   location: {
     fontFamily: typography.fontFamily,
     fontSize: 15,
-    color: colors.textMuted,
     marginBottom: spacing.lg,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   summary: {
     fontFamily: typography.fontFamily,
     fontSize: 16,
     lineHeight: 26,
-    color: colors.textSecondary,
     marginBottom: spacing.xl,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   actions: {
     flexDirection: 'row',
@@ -164,33 +213,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     cursor: 'pointer',
+    transitionProperty: 'background-color, border-color',
     transitionDuration: '150ms',
-  },
-  buttonPrimary: {
-    backgroundColor: colors.accent,
-    borderColor: colors.accent,
-  },
-  buttonPrimaryHover: {
-    backgroundColor: colors.accentDeep,
-    borderColor: colors.accentDeep,
-  },
-  buttonGhost: {
-    backgroundColor: 'transparent',
-    borderColor: colors.border,
-  },
-  buttonGhostHover: {
-    backgroundColor: colors.surfaceAlt,
-    borderColor: colors.accent,
   },
   buttonLabel: {
     fontFamily: typography.fontFamily,
     fontSize: 14,
     fontWeight: '600',
-  },
-  buttonLabelPrimary: {
-    color: colors.surface,
-  },
-  buttonLabelGhost: {
-    color: colors.textPrimary,
   },
 });

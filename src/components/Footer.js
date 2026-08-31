@@ -1,15 +1,23 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet, Linking, useWindowDimensions } from 'react-native';
-import { colors, spacing, typography, breakpoints } from '../theme';
+import { spacing, typography, breakpoints } from '../theme';
+import { useTheme } from '../ThemeContext';
 import { profile } from '../data';
 
 export function Footer() {
   const { width } = useWindowDimensions();
+  const { colors } = useTheme();
   const isMobile = width < breakpoints.mobile;
   const year = new Date().getFullYear();
 
   return (
-    <View nativeID="contact" style={[styles.wrapper, { paddingHorizontal: isMobile ? spacing.lg : spacing.xxl }]}>
+    <View
+      nativeID="contact"
+      style={[
+        styles.wrapper,
+        { paddingHorizontal: isMobile ? spacing.lg : spacing.xxl, backgroundColor: colors.accentDeep },
+      ]}
+    >
       <View style={styles.inner}>
         <Text style={styles.heading}>Let&apos;s build something together</Text>
         <Text style={styles.subheading}>
@@ -35,12 +43,16 @@ export function Footer() {
   );
 }
 
+// The footer band always sits on the dark accentDeep tone regardless of
+// light/dark mode, so its text stays a fixed near-white rather than
+// following colors.surface (which flips dark in dark mode).
 const styles = StyleSheet.create({
   wrapper: {
     width: '100%',
     alignItems: 'center',
-    backgroundColor: colors.accentDeep,
     paddingVertical: spacing.xxl,
+    transitionProperty: 'background-color',
+    transitionDuration: '300ms',
   },
   inner: {
     width: '100%',
@@ -51,7 +63,7 @@ const styles = StyleSheet.create({
     fontFamily: typography.serifFamily,
     fontSize: 26,
     fontWeight: '600',
-    color: colors.surface,
+    color: '#FFFFFF',
     marginBottom: spacing.sm,
   },
   subheading: {
@@ -71,7 +83,7 @@ const styles = StyleSheet.create({
     fontFamily: typography.fontFamily,
     fontSize: 15,
     fontWeight: '600',
-    color: colors.surface,
+    color: '#FFFFFF',
     marginRight: spacing.xl,
     marginBottom: spacing.sm,
   },

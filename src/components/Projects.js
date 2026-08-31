@@ -1,18 +1,34 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet, useWindowDimensions } from 'react-native';
-import { colors, spacing, radius, typography, breakpoints } from '../theme';
+import { spacing, radius, typography, breakpoints } from '../theme';
+import { useTheme } from '../ThemeContext';
 import { Section, SectionHeading } from './Section';
 import { Tag } from './Tag';
+import { NetworkIcon, EyeIcon, CompareIcon } from './icons';
 import { projects } from '../data';
 
+const PROJECT_ICONS = { network: NetworkIcon, eye: EyeIcon, compare: CompareIcon };
+
 function ProjectCard({ project, cardWidth }) {
+  const { colors } = useTheme();
+  const Icon = PROJECT_ICONS[project.icon];
+
   return (
     <Pressable
-      style={({ hovered }) => [styles.card, { width: cardWidth }, hovered && styles.cardHovered]}
+      style={({ hovered }) => [
+        styles.card,
+        { width: cardWidth, backgroundColor: colors.surface, borderColor: colors.border },
+        hovered && { borderColor: colors.accent, transform: [{ translateY: -4 }], boxShadow: '0 12px 24px -12px rgba(0,0,0,0.18)' },
+      ]}
     >
-      <Text style={styles.name}>{project.name}</Text>
-      <Text style={styles.subtitle}>{project.subtitle}</Text>
-      <Text style={styles.description}>{project.description}</Text>
+      {Icon ? (
+        <View style={[styles.iconBadge, { backgroundColor: colors.accentSoft }]}>
+          <Icon size={20} color={colors.accentDeep} />
+        </View>
+      ) : null}
+      <Text style={[styles.name, { color: colors.textPrimary }]}>{project.name}</Text>
+      <Text style={[styles.subtitle, { color: colors.accent }]}>{project.subtitle}</Text>
+      <Text style={[styles.description, { color: colors.textSecondary }]}>{project.description}</Text>
       <View style={styles.tagRow}>
         {project.stack.map((tech) => (
           <Tag key={tech} label={tech} />
@@ -49,43 +65,49 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   card: {
-    backgroundColor: colors.surface,
     borderRadius: radius.lg,
     borderWidth: 1,
-    borderColor: colors.border,
     padding: spacing.lg,
     marginBottom: spacing.lg,
     cursor: 'default',
     transform: [{ translateY: 0 }],
-    transitionProperty: 'transform, box-shadow, border-color',
+    transitionProperty: 'transform, box-shadow, border-color, background-color',
     transitionDuration: '250ms',
     transitionTimingFunction: 'ease-out',
   },
-  cardHovered: {
-    borderColor: colors.accent,
-    transform: [{ translateY: -4 }],
-    boxShadow: '0 12px 24px -12px rgba(51, 50, 47, 0.18)',
+  iconBadge: {
+    width: 40,
+    height: 40,
+    borderRadius: radius.md,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: spacing.md,
+    transitionProperty: 'background-color',
+    transitionDuration: '300ms',
   },
   name: {
     fontFamily: typography.serifFamily,
     fontSize: 20,
     fontWeight: '600',
-    color: colors.textPrimary,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   subtitle: {
     fontFamily: typography.fontFamily,
     fontSize: 13,
-    color: colors.accent,
     fontWeight: '600',
     marginTop: 2,
     marginBottom: spacing.md,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   description: {
     fontFamily: typography.fontFamily,
     fontSize: 14,
     lineHeight: 22,
-    color: colors.textSecondary,
     marginBottom: spacing.md,
+    transitionProperty: 'color',
+    transitionDuration: '300ms',
   },
   tagRow: {
     flexDirection: 'row',
