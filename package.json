@@ -5,7 +5,8 @@
   "description": "Divyanshu Pandey — portfolio site built with React Native Web",
   "scripts": {
     "start": "webpack serve --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "node scripts/deploy.js"
   },
   "dependencies": {
     "react": "^18.3.1",
