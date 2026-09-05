@@ -94,7 +94,7 @@ export function Hero() {
         ]}
       >
         <Avatar size={isMobile ? 84 : 112} />
-        <Text style={[styles.kicker, { color: colors.accent }]}>Full-Stack &amp; AI/ML Engineer</Text>
+        <Text style={[styles.kicker, { color: colors.accent }]}>Cloud Infrastructure &amp; Data Systems</Text>
         <Text style={[styles.name, isMobile && styles.nameMobile, { color: colors.textPrimary }]}>
           {profile.name}
         </Text>

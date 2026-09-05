@@ -1,8 +1,9 @@
 export const profile = {
   name: 'Divyanshu Pandey',
-  title: 'Software Development Engineer (Full Stack)',
+  title: 'Software Development Engineer — Cloud Infrastructure & Data Systems',
   location: 'Faridabad, Haryana, India',
   email: 'pdivyanshu918@gmail.com',
+  phone: '+91-9006188881',
   linkedin: 'https://linkedin.com/in/divyanshupandey18',
   github: 'https://github.com/divyanshuxpandey',
   // Relative (no leading slash): this deploys under a GitHub Pages project
@@ -11,58 +12,65 @@ export const profile = {
   photoUrl: 'avatar.jpg',
   initials: 'DP',
   summary:
-    'Full-stack developer who builds and deploys AI-driven web applications, connecting machine learning models to intuitive user interfaces. Experience across Node.js/GraphQL/REST APIs, SQL and NoSQL data layers, and server-side rendering frontend architecture, paired with production LLM integration — RAG, LangChain, vector search — on AWS and Azure. Currently shipping full-stack features on a live React Native Web + Node.js SaaS platform. B.Tech in Robotics and AI; top-ranked in Meta HackerCup and Codeforces.',
+    'Software Development Engineer with 1.5+ years building and operating cloud data infrastructure: AWS pipelines (S3, Lambda, Airflow) writing into PostgreSQL, containerized services (Docker, Kubernetes), and CI/CD workflows (Git, Jenkins, GitHub Actions) across IoT, media, and fintech production systems. Works daily in Linux, scripts in Python and Bash, and troubleshoots data and pipeline issues under lean-resource constraints. Quantitative foundation from a B.Tech in Robotics & Artificial Intelligence, reinforced by competitive-programming results (Meta HackerCup, Codeforces).',
 };
+
+export const stats = [
+  { value: 1.5, suffix: '+', decimals: 1, label: 'Years in production data & cloud systems' },
+  { value: 15, suffix: '%', label: 'Engagement/CTR lift from a shipped recommendation engine' },
+  { value: 8, suffix: '%', label: 'Churn cut with logistic regression & XGBoost models' },
+  { value: 78, suffix: '%', label: 'Directional accuracy, ARIMA/LSTM stock-trend model' },
+];
 
 export const skillGroups = [
   {
-    title: 'Frontend Development',
-    icon: 'code',
-    items: ['React.js', 'Next.js (App Router)', 'React Native / React Native Web', 'Tailwind CSS', 'SSR', 'Responsive UI'],
-  },
-  {
-    title: 'State & Data',
-    icon: 'layers',
-    items: ['Redux Toolkit', 'Zustand', 'React Query', 'Client-side state management'],
-  },
-  {
-    title: 'Backend & APIs',
-    icon: 'server',
-    items: ['Node.js', 'Express', 'TypeScript', 'GraphQL', 'REST API design', 'Microservices'],
-  },
-  {
-    title: 'AI / ML Integration',
-    icon: 'spark',
-    items: ['LLMs', 'Azure OpenAI', 'LangChain', 'LlamaIndex', 'RAG', 'Prompt Engineering', 'Vector Search', 'HuggingFace', 'PyTorch', 'TensorFlow'],
-  },
-  {
-    title: 'Cloud Infrastructure',
-    icon: 'cloud',
-    items: ['Azure App Services', 'Azure Functions', 'AKS', 'Cognitive Services', 'AWS (EC2, S3, Lambda, SageMaker)', 'Docker', 'Kubernetes', 'GitHub Actions / Jenkins'],
-  },
-  {
-    title: 'Database Systems',
+    title: 'Database & Data Storage',
     icon: 'database',
-    items: ['PostgreSQL', 'NoSQL', 'Azure Cosmos DB', 'Pinecone', 'Airflow'],
+    items: ['PostgreSQL', 'SQL', 'RDBMS', 'Database Systems', 'Data Pipeline Design', 'Schema & Storage Optimization', 'Vector Databases'],
   },
   {
-    title: 'Languages & Tools',
+    title: 'Cloud & Infrastructure',
+    icon: 'cloud',
+    items: ['AWS (EC2, S3, Lambda, SageMaker)', 'GCP (BigQuery)', 'Docker', 'Kubernetes', 'Linux', 'Containerized Environments', 'API Design'],
+  },
+  {
+    title: 'Automation & Scripting',
     icon: 'terminal',
-    items: ['Python', 'TypeScript / JavaScript', 'SQL', 'Go', 'C++', 'Bash', 'Git'],
+    items: ['Bash', 'Python', 'Git', 'GitHub Actions', 'Jenkins', 'Apache Airflow', 'Infrastructure Automation Scripts'],
+  },
+  {
+    title: 'Programming Languages',
+    icon: 'code',
+    items: ['Python', 'SQL', 'Go', 'C++', 'Bash'],
+  },
+  {
+    title: 'Monitoring & Reliability',
+    icon: 'server',
+    items: ['Production Monitoring', 'System Health Checks', 'Root-Cause Troubleshooting', 'Data Quality & Pipeline Validation'],
+  },
+  {
+    title: 'Data & ML Infra Exposure',
+    icon: 'spark',
+    items: ['Feature Engineering', 'Model Deployment', 'RAG & Vector Store Design', 'LLM Tooling'],
+  },
+  {
+    title: 'Currently Deepening',
+    icon: 'layers',
+    items: ['MongoDB', 'ClickHouse', 'ScyllaDB', 'MinIO', 'Ansible', 'Terraform'],
   },
 ];
 
 export const experience = [
   {
     role: 'Software Development Engineer I',
-    company: 'Apinya Mechatronics Industries Pvt. Ltd. (AIM)',
+    company: 'Apinya Mechatronics Industries Pvt. Ltd.',
     location: 'Faridabad, Haryana',
     period: 'July 2026 — Present',
     bullets: [
-      'Contribute full-stack to AIM Navigator, a production telematics/IoT SaaS platform — React Native Web frontend, Node.js/Express + PostgreSQL backend — building APIs that surface real-time fleet data.',
-      'Build predictive maintenance ML models (XGBoost, LSTM) on multi-sensor time-series data, exposed via backend services and dashboards for stakeholders.',
-      'Prototype an autoencoder anomaly-detection module and a CNN defect-detection pipeline, containerized with Docker for testing against live data streams.',
-      'Set up AWS data pipelines (S3, Lambda, Airflow) into PostgreSQL, and explore GenAI/prompt engineering to auto-draft maintenance reports from anomaly logs.',
+      'Architected AWS data pipelines (S3, Lambda, Airflow) writing into PostgreSQL, standardizing storage of multi-sensor time-series data (vibration, temperature, current draw) for a robotic fleet and cutting manual data-prep effort for the modeling team.',
+      'Containerized (Docker) an anomaly-detection service and a CV-based defect-detection pipeline, validating both against live production data streams before rollout.',
+      'Applied PCA and feature engineering (scikit-learn, PyTorch) to reduce dimensionality and cut compute/storage overhead on large-scale sensor data.',
+      'Prototyped LLM-based auto-drafting of maintenance reports from anomaly logs, cutting manual reporting time for the operations team.',
     ],
   },
   {
@@ -71,10 +79,10 @@ export const experience = [
     location: 'Gurugram, Haryana',
     period: 'May 2025 — June 2026',
     bullets: [
-      'Built a content recommendation system (collaborative + content-based filtering), improving engagement and click-through rate by 15%.',
-      'Deployed churn prediction models (logistic regression, XGBoost) as backend services, powering retention campaigns that cut churn by 8%.',
-      'Built end-to-end Python/SQL data pipelines and REST endpoints consolidating multi-source engagement data into a shared dashboard used weekly by the founding team.',
-      'Partnered with founders and product to define KPIs and design A/B testing frameworks for new feature rollouts.',
+      'Built end-to-end Python/SQL data pipelines consolidating multi-source engagement data into a centralized store, feeding a Power BI/Tableau dashboard used weekly by the founding team.',
+      'Shipped a recommendation engine (collaborative + content-based filtering) lifting engagement/CTR 15%, and churn-prediction models (logistic regression, XGBoost) cutting churn 8% — both running on lean production data infrastructure.',
+      'Mined user-generated content via NLP (NLTK, spaCy), surfacing sentiment and social-listening insights that shaped content and product strategy.',
+      'Defined KPIs and A/B testing/experimentation frameworks with founders and product for new feature rollouts.',
     ],
   },
   {
@@ -83,8 +91,8 @@ export const experience = [
     location: 'Gurugram, Haryana',
     period: 'January 2025 — April 2025',
     bullets: [
-      'Built a stock price trend prediction model (ARIMA, LSTM) with 78% directional accuracy, served via backend APIs for an educational product.',
-      'Analyzed engagement data to identify course modules tied to better performance, informing curriculum changes that raised completion by 10%.',
+      'Built a time-series forecasting pipeline (ARIMA, LSTM) for stock-trend prediction, achieving 78% directional accuracy on backtested data.',
+      'Analyzed historical trading and engagement data to correlate course modules with performance, informing curriculum changes that raised completion rate by 10%.',
     ],
   },
 ];
@@ -95,9 +103,26 @@ export const projects = [
     subtitle: 'Multi-Modal AI Research Automation System',
     icon: 'network',
     github: 'https://github.com/divyanshuxpandey/mMARS-multi_Modal_AI_research_software',
-    stack: ['Python', 'LLMs', 'LangChain', 'RAG', 'AWS'],
+    stack: ['Python', 'LangChain', 'RAG', 'AWS', 'Vector DB'],
     description:
-      'An LLM-driven pipeline with Retrieval-Augmented Generation for multi-format data extraction; modular workflows with prompt orchestration, embeddings, and vector-based semantic retrieval.',
+      'An LLM-driven, RAG-based pipeline for multi-format data extraction, with modular embeddings and vector-based semantic retrieval workflows. Designed the underlying storage/retrieval layer around a vector database, structuring embeddings for low-latency semantic lookups at query time.',
+  },
+  {
+    name: 'Language Translator',
+    subtitle: 'LLM-Based Language Translation System',
+    icon: 'globe',
+    github: 'https://github.com/divyanshuxpandey/Language_translation_using_ollama',
+    stack: ['Python', 'Ollama', 'LangChain'],
+    description:
+      'A real-time translation system with LangChain-based prompt orchestration, optimizing for accuracy, latency, and multilingual context preservation — run on locally hosted models via Ollama, with environment setup and configuration handled on Linux.',
+  },
+  {
+    name: 'Duplicate Question Detection',
+    subtitle: 'Semantic Similarity with Transformer Embeddings',
+    icon: 'compare',
+    stack: ['NLP', 'DistilBERT', 'Scikit-learn', 'HuggingFace'],
+    description:
+      'A semantic-similarity system — Bag-of-Words + Random Forest reaching 81.67% accuracy — and a fine-tuned DistilBERT model reaching 89.89% accuracy, using transformer-based embeddings.',
   },
   {
     name: 'PIDV',
@@ -107,23 +132,6 @@ export const projects = [
     stack: ['Python', 'OpenCV', 'YOLOv4', 'TensorFlow'],
     description:
       'A computer-vision system combining face detection (Haar Cascade), age/gender estimation, and YOLOv4-tiny object detection to identify individuals and estimate inter-person proximity from live camera feeds for social-distancing and smart-environment use cases.',
-  },
-  {
-    name: 'Duplicate Question Detection',
-    subtitle: 'Semantic Similarity with Transformer Embeddings',
-    icon: 'compare',
-    stack: ['NLP', 'DistilBERT', 'Scikit-learn', 'HuggingFace'],
-    description:
-      'A semantic similarity system — Bag-of-Words + Random Forest reaching 81.67% accuracy, and a fine-tuned DistilBERT model reaching 89.89% accuracy — using transformer-based embeddings.',
-  },
-  {
-    name: 'Language Translator',
-    subtitle: 'Ollama-Powered Translation Web App',
-    icon: 'globe',
-    github: 'https://github.com/divyanshuxpandey/Language_translation_using_ollama',
-    stack: ['Python', 'Streamlit', 'LangChain', 'Ollama'],
-    description:
-      'A Streamlit web app for real-time text translation, using LangChain to orchestrate prompts and output parsing over a locally-run Llama model served through Ollama.',
   },
 ];
 
