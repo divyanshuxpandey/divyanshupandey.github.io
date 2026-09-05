@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { ThemeProvider, useTheme } from './ThemeContext';
 import { NavBar } from './components/NavBar';
 import { Hero } from './components/Hero';
+import { Stats } from './components/Stats';
 import { Experience } from './components/Experience';
 import { Projects } from './components/Projects';
 import { Skills } from './components/Skills';
@@ -16,6 +17,7 @@ function AppShell() {
     <View style={[styles.app, { backgroundColor: colors.background }]}>
       <NavBar />
       <Hero />
+      <Stats />
       <Experience />
       <Projects />
       <Skills />

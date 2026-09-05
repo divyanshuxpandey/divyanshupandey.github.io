@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Pressable, StyleSheet, Linking, useWindowDimensions } from 'react-native';
 import { spacing, typography, breakpoints } from '../theme';
 import { useTheme } from '../ThemeContext';
 import { profile } from '../data';
+
+function CopyEmailButton() {
+  const [copied, setCopied] = useState(false);
+
+  const handlePress = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      // Clipboard API unavailable — the email text link next to this still works.
+    }
+  };
+
+  return (
+    <Pressable onPress={handlePress} accessibilityRole="button" accessibilityLabel="Copy email address">
+      <Text style={styles.link}>{copied ? 'Copied ✓' : 'Copy email'}</Text>
+    </Pressable>
+  );
+}
 
 export function Footer() {
   const { width } = useWindowDimensions();
@@ -21,13 +41,19 @@ export function Footer() {
       <View style={styles.inner}>
         <Text style={styles.heading}>Let&apos;s build something together</Text>
         <Text style={styles.subheading}>
-          Open to full-stack and AI/ML engineering conversations — reach out any time.
+          Open to cloud infrastructure and data engineering conversations — reach out any time.
         </Text>
 
         <View style={[styles.linkRow, isMobile && styles.linkRowMobile]}>
           <Pressable onPress={() => Linking.openURL(`mailto:${profile.email}`, '_self')} accessibilityRole="link">
             <Text style={styles.link}>{profile.email}</Text>
           </Pressable>
+          <CopyEmailButton />
+          {profile.phone ? (
+            <Pressable onPress={() => Linking.openURL(`tel:${profile.phone}`, '_self')} accessibilityRole="link">
+              <Text style={styles.link}>{profile.phone}</Text>
+            </Pressable>
+          ) : null}
           <Pressable onPress={() => Linking.openURL(profile.github)} accessibilityRole="link">
             <Text style={styles.link}>GitHub ↗</Text>
           </Pressable>

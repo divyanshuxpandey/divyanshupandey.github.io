@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { View, Text, Pressable, StyleSheet, Linking, useWindowDimensions } from 'react-native';
 import { spacing, radius, typography, breakpoints } from '../theme';
 import { useTheme } from '../ThemeContext';
 import { Section, SectionHeading } from './Section';
-import { Tag } from './Tag';
+import { Tag, FilterTag } from './Tag';
 import { NetworkIcon, EyeIcon, CompareIcon, GlobeIcon, GitHubIcon } from './icons';
 import { projects } from '../data';
 
@@ -58,12 +58,27 @@ export function Projects() {
   const columns = isMobile ? 1 : isTablet ? 2 : 3;
   const gap = spacing.lg;
   const cardWidth = columns === 1 ? '100%' : `calc(${100 / columns}% - ${(gap * (columns - 1)) / columns}px)`;
+  const [activeStack, setActiveStack] = useState(null);
+
+  const stackOptions = useMemo(() => {
+    const seen = new Set();
+    projects.forEach((project) => project.stack.forEach((tech) => seen.add(tech)));
+    return Array.from(seen).sort();
+  }, []);
+
+  const visibleProjects = activeStack ? projects.filter((project) => project.stack.includes(activeStack)) : projects;
 
   return (
     <Section id="projects" alt>
       <SectionHeading eyebrow="Selected work" title="Projects" />
+      <View style={styles.filterRow}>
+        <FilterTag label="All" active={!activeStack} onPress={() => setActiveStack(null)} />
+        {stackOptions.map((tech) => (
+          <FilterTag key={tech} label={tech} active={activeStack === tech} onPress={() => setActiveStack(tech)} />
+        ))}
+      </View>
       <View style={styles.grid}>
-        {projects.map((project) => (
+        {visibleProjects.map((project) => (
           <ProjectCard key={project.name} project={project} cardWidth={cardWidth} />
         ))}
       </View>
@@ -72,6 +87,11 @@ export function Projects() {
 }
 
 const styles = StyleSheet.create({
+  filterRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: spacing.lg,
+  },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
