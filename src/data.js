@@ -1,150 +1,186 @@
 export const profile = {
   name: 'Divyanshu Pandey',
-  title: 'Software Development Engineer — Cloud Infrastructure & Data Systems',
+  brand: 'DIVYANSHU',
+  title: 'Software Development Engineer',
+  tagline: 'CLOUD.ENGINE',
+  role: 'Software Engineer & Problem Solver',
   location: 'Faridabad, Haryana, India',
   email: 'pdivyanshu918@gmail.com',
   phone: '+91-9006188881',
   linkedin: 'https://linkedin.com/in/divyanshupandey18',
   github: 'https://github.com/divyanshuxpandey',
-  // Relative (no leading slash): this deploys under a GitHub Pages project
-  // subpath (/divyanshupandey.github.io/), not the domain root.
+  // Relative (no leading slash / handled via BASE_URL): this deploys under
+  // a GitHub Pages project subpath (/divyanshupandey.github.io/), not the
+  // domain root.
   resumeUrl: 'Divyanshu_Pandey_Resume.pdf',
-  photoUrl: 'avatar.jpg',
-  initials: 'DP',
   summary:
-    'Software Development Engineer with 1.5+ years building and operating cloud data infrastructure: AWS pipelines (S3, Lambda, Airflow) writing into PostgreSQL, containerized services (Docker, Kubernetes), and CI/CD workflows (Git, Jenkins, GitHub Actions) across IoT, media, and fintech production systems. Works daily in Linux, scripts in Python and Bash, and troubleshoots data and pipeline issues under lean-resource constraints. Quantitative foundation from a B.Tech in Robotics & Artificial Intelligence, reinforced by competitive-programming results (Meta HackerCup, Codeforces).',
+    'Software Development Engineer with 1.5+ years building and operating cloud data infrastructure and GenAI systems: AWS pipelines (S3, Lambda, Airflow) writing into PostgreSQL, RAG/LLM pipelines, containerized services (Docker, Kubernetes), and CI/CD workflows across IoT, media, and fintech production systems.',
+  stackLine: 'AWS • PostgreSQL • Docker/K8s • LLM/RAG',
 };
 
 export const stats = [
-  { value: 1.5, suffix: '+', decimals: 1, label: 'Years in production data & cloud systems' },
-  { value: 15, suffix: '%', label: 'Engagement/CTR lift from a shipped recommendation engine' },
-  { value: 8, suffix: '%', label: 'Churn cut with logistic regression & XGBoost models' },
-  { value: 78, suffix: '%', label: 'Directional accuracy, ARIMA/LSTM stock-trend model' },
+  { value: '1.5+', label: 'Years in production data & cloud systems' },
+  { value: '15%', label: 'Engagement/CTR lift from a shipped recommendation engine' },
+  { value: '8%', label: 'Churn cut with logistic regression & XGBoost models' },
+  { value: '78%', label: 'Directional accuracy, ARIMA/LSTM stock-trend model' },
 ];
 
-export const skillGroups = [
+export const achievements = [
+  { text: 'National Semi-Finalist, ', strong: 'Meta HackerCup 2025', rest: ' — India Rank 112, Global Rank 716 among 13,000+ participants.' },
+  { text: 'All India Rank 466, ', strong: 'Codeforces Round 1020 (Div. 3)', rest: ' — Global Rank 1783 among 40,000+ contestants.' },
+  { text: 'Top 20 Finalist, ', strong: 'Samsung Solve for Tomorrow (India)', rest: ' — selected nationally for an impactful real-world tech solution.' },
+  { text: '1st Place, ', strong: 'Entrepreneurship Summit', rest: ' — J.C. Bose University of Science and Technology (YMCA), Faridabad.' },
+];
+
+export const techStack = [
+  'AWS', 'PostgreSQL', 'Docker', 'Kubernetes', 'Python', 'Apache Airflow', 'LangChain', 'GitHub Actions',
+];
+
+export const expertiseData = [
+  {
+    number: '01',
+    title: 'Cloud Data Infrastructure',
+    text: 'Architecting AWS pipelines (S3, Lambda, Airflow) that write into PostgreSQL, standardizing storage of multi-source production data at scale.',
+    tag: 'AWS & DATA PIPELINES',
+    gradient: 'from-[#1f0a0c] via-[#121212] to-[#0a0a0a]',
+  },
+  {
+    number: '02',
+    title: 'GenAI & LLM Systems',
+    text: 'Building RAG pipelines, vector-store retrieval, and LangChain-orchestrated LLM workflows — from multi-modal research automation to real-time translation.',
+    tag: 'RAG / LANGCHAIN / VECTOR DB',
+    gradient: 'from-[#1a0809] via-[#111111] to-[#090909]',
+  },
+  {
+    number: '03',
+    title: 'ML & Data Modeling',
+    text: 'Shipping recommendation engines, churn models (XGBoost, logistic regression), and time-series forecasting (ARIMA/LSTM) on production data.',
+    tag: 'ML / FEATURE ENGINEERING',
+    gradient: 'from-[#220a0d] via-[#131313] to-[#0a0a0a]',
+  },
+  {
+    number: '04',
+    title: 'Cloud & Deployment',
+    text: 'Containerizing services with Docker/Kubernetes and running CI/CD pipelines (Git, Jenkins, GitHub Actions) across IoT, media, and fintech systems.',
+    tag: 'DEVOPS & CLOUD',
+    gradient: 'from-[#1d090b] via-[#101010] to-[#080808]',
+  },
+];
+
+export const skillCategories = [
   {
     title: 'Database & Data Storage',
-    icon: 'database',
-    items: ['PostgreSQL', 'SQL', 'RDBMS', 'Database Systems', 'Data Pipeline Design', 'Schema & Storage Optimization', 'Vector Databases'],
+    desc: 'Designing schemas and pipelines across relational and vector stores, optimized for low-latency production reads.',
+    tag: 'DATA STORAGE',
+    skills: ['PostgreSQL', 'SQL', 'RDBMS', 'Vector Databases', 'Data Pipeline Design'],
   },
   {
     title: 'Cloud & Infrastructure',
-    icon: 'cloud',
-    items: ['AWS (EC2, S3, Lambda, SageMaker)', 'GCP (BigQuery)', 'Docker', 'Kubernetes', 'Linux', 'Containerized Environments', 'API Design'],
+    desc: 'Operating containerized, cloud-hosted production services with a focus on reliability and cost efficiency.',
+    tag: 'INFRASTRUCTURE',
+    skills: ['AWS (EC2, S3, Lambda, SageMaker)', 'GCP (BigQuery)', 'Docker', 'Kubernetes', 'Linux'],
+  },
+  {
+    title: 'GenAI & LLM Engineering',
+    desc: 'Shipping LLM-driven, RAG-based systems — from semantic retrieval pipelines to locally hosted multilingual translation.',
+    tag: 'RAG & LLM',
+    skills: ['LangChain', 'RAG', 'Vector Retrieval', 'Ollama', 'LLM Tooling'],
   },
   {
     title: 'Automation & Scripting',
-    icon: 'terminal',
-    items: ['Bash', 'Python', 'Git', 'GitHub Actions', 'Jenkins', 'Apache Airflow', 'Infrastructure Automation Scripts'],
+    desc: 'Automating infrastructure and data workflows end to end, from ingestion scripts to CI/CD deploy pipelines.',
+    tag: 'AUTOMATION',
+    skills: ['Bash', 'Python', 'Git', 'GitHub Actions', 'Jenkins', 'Apache Airflow'],
   },
   {
     title: 'Programming Languages',
-    icon: 'code',
-    items: ['Python', 'SQL', 'Go', 'C++', 'Bash'],
+    desc: 'Comfortable across systems and scripting languages, picking the right tool for backend, data, and automation work.',
+    tag: 'LANGUAGES',
+    skills: ['Python', 'SQL', 'Go', 'C++', 'Bash'],
   },
   {
     title: 'Monitoring & Reliability',
-    icon: 'server',
-    items: ['Production Monitoring', 'System Health Checks', 'Root-Cause Troubleshooting', 'Data Quality & Pipeline Validation'],
-  },
-  {
-    title: 'Data & ML Infra Exposure',
-    icon: 'spark',
-    items: ['Feature Engineering', 'Model Deployment', 'RAG & Vector Store Design', 'LLM Tooling'],
-  },
-  {
-    title: 'Currently Deepening',
-    icon: 'layers',
-    items: ['MongoDB', 'ClickHouse', 'ScyllaDB', 'MinIO', 'Ansible', 'Terraform'],
+    desc: 'Keeping production data pipelines healthy with proactive monitoring, validation, and root-cause troubleshooting.',
+    tag: 'RELIABILITY',
+    skills: ['Production Monitoring', 'System Health Checks', 'Root-Cause Troubleshooting', 'Data Quality Validation'],
   },
 ];
 
-export const experience = [
+// Real projects, leading with the flagship GenAI/LLM builds.
+export const projectsData = [
   {
-    role: 'Software Development Engineer I',
-    company: 'Apinya Mechatronics Industries Pvt. Ltd.',
-    location: 'Faridabad, Haryana',
-    period: 'July 2026 — Present',
-    bullets: [
-      'Architected AWS data pipelines (S3, Lambda, Airflow) writing into PostgreSQL, standardizing storage of multi-sensor time-series data (vibration, temperature, current draw) for a robotic fleet and cutting manual data-prep effort for the modeling team.',
-      'Containerized (Docker) an anomaly-detection service and a CV-based defect-detection pipeline, validating both against live production data streams before rollout.',
-      'Applied PCA and feature engineering (scikit-learn, PyTorch) to reduce dimensionality and cut compute/storage overhead on large-scale sensor data.',
-      'Prototyped LLM-based auto-drafting of maintenance reports from anomaly logs, cutting manual reporting time for the operations team.',
-    ],
-  },
-  {
-    role: 'Software Development Engineer',
-    company: 'OMSR Media Pvt Ltd',
-    location: 'Gurugram, Haryana',
-    period: 'May 2025 — June 2026',
-    bullets: [
-      'Built end-to-end Python/SQL data pipelines consolidating multi-source engagement data into a centralized store, feeding a Power BI/Tableau dashboard used weekly by the founding team.',
-      'Shipped a recommendation engine (collaborative + content-based filtering) lifting engagement/CTR 15%, and churn-prediction models (logistic regression, XGBoost) cutting churn 8% — both running on lean production data infrastructure.',
-      'Mined user-generated content via NLP (NLTK, spaCy), surfacing sentiment and social-listening insights that shaped content and product strategy.',
-      'Defined KPIs and A/B testing/experimentation frameworks with founders and product for new feature rollouts.',
-    ],
-  },
-  {
-    role: 'SDE Intern',
-    company: 'Stock Tutor Pvt Ltd',
-    location: 'Gurugram, Haryana',
-    period: 'January 2025 — April 2025',
-    bullets: [
-      'Built a time-series forecasting pipeline (ARIMA, LSTM) for stock-trend prediction, achieving 78% directional accuracy on backtested data.',
-      'Analyzed historical trading and engagement data to correlate course modules with performance, informing curriculum changes that raised completion rate by 10%.',
-    ],
-  },
-];
-
-export const projects = [
-  {
-    name: 'mMARS',
-    subtitle: 'Multi-Modal AI Research Automation System',
-    icon: 'network',
+    title: 'mMARS',
+    category: 'GenAI / RAG Architecture',
+    description:
+      'LLM-driven, RAG-based pipeline for multi-format data extraction, with modular embeddings and vector-based semantic retrieval built for low-latency lookups at query time.',
+    tags: ['Python', 'LangChain', 'RAG', 'AWS', 'Vector DB'],
+    match: '100%',
+    episode: 'S01 E01',
     github: 'https://github.com/divyanshuxpandey/mMARS-multi_Modal_AI_research_software',
-    stack: ['Python', 'LangChain', 'RAG', 'AWS', 'Vector DB'],
-    description:
-      'An LLM-driven, RAG-based pipeline for multi-format data extraction, with modular embeddings and vector-based semantic retrieval workflows. Designed the underlying storage/retrieval layer around a vector database, structuring embeddings for low-latency semantic lookups at query time.',
   },
   {
-    name: 'Language Translator',
-    subtitle: 'LLM-Based Language Translation System',
-    icon: 'globe',
+    title: 'LLM Language Translator',
+    category: 'GenAI / LLM Systems',
+    description:
+      'Real-time multilingual translation system with LangChain prompt orchestration, running locally hosted models via Ollama for accuracy, latency, and context preservation.',
+    tags: ['Python', 'Ollama', 'LangChain', 'LLM'],
+    match: '99%',
+    episode: 'S01 E02',
     github: 'https://github.com/divyanshuxpandey/Language_translation_using_ollama',
-    stack: ['Python', 'Ollama', 'LangChain'],
-    description:
-      'A real-time translation system with LangChain-based prompt orchestration, optimizing for accuracy, latency, and multilingual context preservation — run on locally hosted models via Ollama, with environment setup and configuration handled on Linux.',
   },
   {
-    name: 'Duplicate Question Detection',
-    subtitle: 'Semantic Similarity with Transformer Embeddings',
-    icon: 'compare',
-    stack: ['NLP', 'DistilBERT', 'Scikit-learn', 'HuggingFace'],
+    title: 'Cloud Sensor Data Platform',
+    category: 'Cloud & Data Infrastructure',
     description:
-      'A semantic-similarity system — Bag-of-Words + Random Forest reaching 81.67% accuracy — and a fine-tuned DistilBERT model reaching 89.89% accuracy, using transformer-based embeddings.',
+      'AWS pipeline (S3, Lambda, Airflow) standardizing multi-sensor time-series data from a robotic fleet into PostgreSQL, cutting manual data-prep effort for modeling.',
+    tags: ['AWS', 'Airflow', 'PostgreSQL', 'Python'],
+    match: '98%',
+    episode: 'S01 E03',
   },
   {
-    name: 'PIDV',
-    subtitle: 'Person Identification & Verification via ML',
-    icon: 'eye',
+    title: 'Recommendation & Churn Engine',
+    category: 'ML / Data Systems',
+    description:
+      'Collaborative + content-based recommendation engine lifting engagement/CTR 15%, paired with churn models (logistic regression, XGBoost) cutting churn 8%.',
+    tags: ['Python', 'XGBoost', 'scikit-learn', 'SQL'],
+    match: '98%',
+    episode: 'S01 E04',
+  },
+  {
+    title: 'Anomaly & Defect Detection',
+    category: 'Computer Vision / DevOps',
+    description:
+      'Containerized (Docker) anomaly-detection service and CV-based defect-detection pipeline, validated against live production data streams before rollout.',
+    tags: ['Docker', 'PyTorch', 'Computer Vision', 'AWS'],
+    match: '97%',
+    episode: 'S01 E05',
+  },
+  {
+    title: 'Duplicate Question Detection',
+    category: 'NLP / Semantic Similarity',
+    description:
+      'Semantic-similarity system reaching 89.89% accuracy with a fine-tuned DistilBERT model, built on transformer-based embeddings.',
+    tags: ['NLP', 'DistilBERT', 'Scikit-learn', 'HuggingFace'],
+    match: '96%',
+    episode: 'S01 E06',
+  },
+  {
+    title: 'PIDV',
+    category: 'Computer Vision',
+    description:
+      'Person identification & verification combining face detection, age/gender estimation, and YOLOv4-tiny object detection to estimate inter-person proximity from live feeds.',
+    tags: ['Python', 'OpenCV', 'YOLOv4', 'TensorFlow'],
+    match: '96%',
+    episode: 'S01 E07',
     github: 'https://github.com/divyanshuxpandey/PIDV_using_ML',
-    stack: ['Python', 'OpenCV', 'YOLOv4', 'TensorFlow'],
-    description:
-      'A computer-vision system combining face detection (Haar Cascade), age/gender estimation, and YOLOv4-tiny object detection to identify individuals and estimate inter-person proximity from live camera feeds for social-distancing and smart-environment use cases.',
   },
-];
-
-export const education = {
-  degree: 'Bachelor of Technology in Robotics and Artificial Intelligence',
-  school: 'J.C. Bose University of Science and Technology, YMCA',
-  location: 'Faridabad, Haryana',
-  period: '2021 — May 2025',
-};
-
-export const achievements = [
-  'Meta HackerCup 2025 — India Rank 112, Global Rank 716 among 13,000+ participants.',
-  'Codeforces Round 1020 (Div. 3) — All India Rank 466, Global Rank 1783 among 40,000+ contestants.',
-  'Top 20 Finalist, Samsung Solve for Tomorrow (India) — selected nationally for an impactful real-world tech solution.',
-  '1st Place, Entrepreneurship Summit — J.C. Bose University of Science and Technology (YMCA), Faridabad.',
+  {
+    title: 'Stock Trend Forecasting',
+    category: 'Time-Series Modeling',
+    description:
+      'Time-series forecasting pipeline (ARIMA, LSTM) for stock-trend prediction, achieving 78% directional accuracy on backtested data.',
+    tags: ['Python', 'ARIMA', 'LSTM', 'Data Analysis'],
+    match: '95%',
+    episode: 'S01 E08',
+  },
 ];

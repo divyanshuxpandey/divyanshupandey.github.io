@@ -1,28 +1,24 @@
 {
   "name": "divyanshu-pandey-portfolio",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Divyanshu Pandey — portfolio site built with React Native Web",
+  "type": "module",
+  "description": "Divyanshu Pandey — portfolio site, a cinematic Netflix-styled single-page build.",
   "scripts": {
-    "start": "webpack serve --mode development --open",
-    "build": "webpack --mode production",
-    "deploy": "node scripts/deploy.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-native-web": "^0.19.13"
+    "framer-motion": "^13.2.0",
+    "gsap": "^3.15.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.4",
-    "@babel/preset-react": "^7.24.7",
-    "babel-loader": "^9.2.1",
-    "babel-plugin-react-native-web": "^0.19.13",
-    "copy-webpack-plugin": "^12.0.2",
-    "html-webpack-plugin": "^5.6.0",
-    "webpack": "^5.94.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.1.0"
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.0"
   }
 }
