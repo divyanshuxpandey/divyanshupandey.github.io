@@ -159,10 +159,11 @@ export const projectsData = [
     title: 'Duplicate Question Detection',
     category: 'NLP / Semantic Similarity',
     description:
-      'Semantic-similarity system reaching 89.89% accuracy with a fine-tuned DistilBERT model, built on transformer-based embeddings.',
+      'Semantic-similarity system for duplicate question pairs — a TF-IDF + Random Forest baseline (trained and evaluated in-repo) alongside a DistilBERT fine-tuning pipeline for transformer-based embeddings.',
     tags: ['NLP', 'DistilBERT', 'Scikit-learn', 'HuggingFace'],
     match: '96%',
     episode: 'S01 E06',
+    github: 'https://github.com/divyanshuxpandey/Duplicate-Question-Detection-project',
   },
   {
     title: 'PIDV',
