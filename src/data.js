@@ -132,28 +132,31 @@ export const projectsData = [
     title: 'Cloud Sensor Data Platform',
     category: 'Cloud & Data Infrastructure',
     description:
-      'AWS pipeline (S3, Lambda, Airflow) standardizing multi-sensor time-series data from a robotic fleet into PostgreSQL, cutting manual data-prep effort for modeling.',
-    tags: ['AWS', 'Airflow', 'PostgreSQL', 'Python'],
+      'Simulated S3 → Lambda → Airflow → PostgreSQL pipeline standardizing multi-firmware sensor payloads (mixed schemas/units) into one clean schema, each piece mapped onto its production AWS equivalent.',
+    tags: ['AWS', 'Airflow', 'PostgreSQL', 'FastAPI'],
     match: '98%',
     episode: 'S01 E03',
+    github: 'https://github.com/divyanshuxpandey/Cloud-Sensor-Data-Platform',
   },
   {
     title: 'Recommendation & Churn Engine',
     category: 'ML / Data Systems',
     description:
-      'Collaborative + content-based recommendation engine lifting engagement/CTR 15%, paired with churn models (logistic regression, XGBoost) cutting churn 8%.',
-    tags: ['Python', 'XGBoost', 'scikit-learn', 'SQL'],
+      'Hybrid (collaborative + content-based) recommender and an XGBoost/logistic-regression churn model, trained and evaluated in-repo: precision@5 = 0.80, churn ROC-AUC = 0.965.',
+    tags: ['Python', 'XGBoost', 'scikit-learn', 'Streamlit'],
     match: '98%',
     episode: 'S01 E04',
+    github: 'https://github.com/divyanshuxpandey/Recomendation-Churn-Engine',
   },
   {
     title: 'Anomaly & Defect Detection',
-    category: 'Computer Vision / DevOps',
+    category: 'Anomaly Detection / DevOps',
     description:
-      'Containerized (Docker) anomaly-detection service and CV-based defect-detection pipeline, validated against live production data streams before rollout.',
-    tags: ['Docker', 'PyTorch', 'Computer Vision', 'AWS'],
+      'Isolation Forest anomaly detector over multi-sensor time-series data from a simulated robotic fleet (precision 0.98, recall 1.00), served as a Dockerized FastAPI service.',
+    tags: ['Docker', 'scikit-learn', 'FastAPI', 'Streamlit'],
     match: '97%',
     episode: 'S01 E05',
+    github: 'https://github.com/divyanshuxpandey/Anomaly-Defect-Detection',
   },
   {
     title: 'Duplicate Question Detection',
@@ -179,9 +182,10 @@ export const projectsData = [
     title: 'Stock Trend Forecasting',
     category: 'Time-Series Modeling',
     description:
-      'Time-series forecasting pipeline (ARIMA, LSTM) for stock-trend prediction, achieving 78% directional accuracy on backtested data.',
-    tags: ['Python', 'ARIMA', 'LSTM', 'Data Analysis'],
+      'ARIMA and LSTM one-step-ahead forecasters, evaluated side-by-side with rolling backtests on the same held-out period — results reported honestly rather than tuned to look good.',
+    tags: ['Python', 'ARIMA', 'LSTM', 'Streamlit'],
     match: '95%',
     episode: 'S01 E08',
+    github: 'https://github.com/divyanshuxpandey/Stock-Trend-Forecasting',
   },
 ];
