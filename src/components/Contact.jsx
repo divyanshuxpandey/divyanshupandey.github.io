@@ -2,6 +2,13 @@ import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { profile } from '../data';
 
+// Free form-relay service: submissions get emailed straight to profile.email
+// (name, email, and message included) without needing a backend of our own.
+// Get a key at https://web3forms.com/ (enter pdivyanshu918@gmail.com, the key
+// arrives by email in seconds) and paste it in here. Until it's set, the form
+// falls back to opening the visitor's own email client instead.
+const WEB3FORMS_ACCESS_KEY = '';
+
 const Contact = () => {
   const ref = useRef(null);
 
@@ -12,6 +19,7 @@ const Contact = () => {
     message: '',
     permission: false,
   });
+  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -28,7 +36,14 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const sendViaMailto = () => {
+    const subject = encodeURIComponent(`Portfolio contact from ${formData.firstName} ${formData.lastName}`);
+    const body = encodeURIComponent(`${formData.message}\n\n— ${formData.firstName} ${formData.lastName} (${formData.email})`);
+    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+    setFormData({ firstName: '', lastName: '', email: '', message: '', permission: false });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.permission) {
@@ -36,11 +51,34 @@ const Contact = () => {
       return;
     }
 
-    const subject = encodeURIComponent(`Portfolio contact from ${formData.firstName} ${formData.lastName}`);
-    const body = encodeURIComponent(`${formData.message}\n\n— ${formData.firstName} ${formData.lastName} (${formData.email})`);
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+    if (!WEB3FORMS_ACCESS_KEY) {
+      sendViaMailto();
+      return;
+    }
 
-    setFormData({ firstName: '', lastName: '', email: '', message: '', permission: false });
+    setStatus('sending');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio contact from ${formData.firstName} ${formData.lastName}`,
+        }),
+      });
+      const result = await res.json();
+      if (result.success) {
+        setStatus('sent');
+        setFormData({ firstName: '', lastName: '', email: '', message: '', permission: false });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -159,14 +197,21 @@ const Contact = () => {
 
                   <button
                     type="submit"
-                    className="px-8 py-3.5 rounded bg-red-600 text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-red-700 transition-all duration-300 group whitespace-nowrap shadow-[0_0_20px_rgba(229,9,20,0.6)] hover:scale-105"
+                    disabled={status === 'sending'}
+                    className="px-8 py-3.5 rounded bg-red-600 text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-red-700 transition-all duration-300 group whitespace-nowrap shadow-[0_0_20px_rgba(229,9,20,0.6)] hover:scale-105 disabled:opacity-60 disabled:hover:scale-100"
                   >
-                    Send Message
+                    {status === 'sending' ? 'Sending…' : 'Send Message'}
                     <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </button>
                 </div>
+                {status === 'sent' && (
+                  <p className="text-xs text-green-500 font-mono">Message sent — thanks, I'll get back to you soon.</p>
+                )}
+                {status === 'error' && (
+                  <p className="text-xs text-red-400 font-mono">Something went wrong. Please email {profile.email} directly.</p>
+                )}
               </div>
             </div>
           </form>

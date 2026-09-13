@@ -82,7 +82,7 @@ const Expertise = () => {
             </h2>
           </div>
           <p className="text-white/60 text-xs md:text-sm font-light leading-relaxed max-w-xs">
-            Merging cloud data infrastructure, GenAI/RAG systems, and production ML into reliable, scalable platforms.
+            GenAI systems and cloud architecture, delivered forward-deployed — embedded with the teams running them in production.
           </p>
         </div>
 

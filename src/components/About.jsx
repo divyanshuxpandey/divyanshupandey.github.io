@@ -101,7 +101,7 @@ const About = () => {
             <div className="space-y-5 relative z-10">
               <h3 className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold">Cast & Background</h3>
               <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed">
-                I am <span className="text-white font-bold drop-shadow">{profile.name}</span>, a {profile.title} building cloud data infrastructure and GenAI systems in production.
+                I am <span className="text-white font-bold drop-shadow">{profile.name}</span>, a {profile.title} — shipping GenAI/RAG systems and cloud architecture embedded directly with the teams running them in production.
               </p>
               <p className="text-sm md:text-base text-white/60 font-light leading-relaxed">
                 {profile.summary}
@@ -109,9 +109,9 @@ const About = () => {
             </div>
 
             <div className="pt-8 flex flex-wrap gap-2 relative z-10">
-              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Cloud & Data Infrastructure</span>
               <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">GenAI & LLM Systems</span>
-              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">ML & Data Modeling</span>
+              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Forward-Deployed Engineering</span>
+              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Cloud Architecture</span>
             </div>
           </div>
 

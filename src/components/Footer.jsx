@@ -58,7 +58,15 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-white/5 text-[11px] font-mono text-white/40 uppercase tracking-widest">
           <p>&copy; {new Date().getFullYear()} {profile.name}. All Rights Reserved.</p>
-          <p className="text-red-500/80">STREAMING WORLDWIDE &bull; BUILT WITH REACT & GSAP</p>
+          <div className="flex items-center gap-4">
+            <p className="text-red-500/80">STREAMING WORLDWIDE &bull; BUILT WITH REACT & GSAP</p>
+            <a
+              href="./dashboard/"
+              className="px-3 py-1 rounded border border-white/15 text-white/50 normal-case tracking-wide hover:text-red-500 hover:border-red-600/50 transition-colors"
+            >
+              Dashboard
+            </a>
+          </div>
         </div>
 
       </div>
