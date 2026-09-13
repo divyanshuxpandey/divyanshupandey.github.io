@@ -13,9 +13,9 @@ const Hero = () => {
   const contentRef = useRef(null);
 
   const developerRoles = [
-    'FEATURE FILM // CLOUD INFRASTRUCTURE ENGINEER',
-    'ORIGINAL SERIES // GENAI & RAG SYSTEMS',
-    'BLOCKBUSTER // DATA PIPELINE ARCHITECT',
+    'FEATURE FILM // GENAI & RAG ENGINEER',
+    'ORIGINAL SERIES // FORWARD DEPLOYED ENGINEER',
+    'BLOCKBUSTER // CLOUD ARCHITECT',
     'ACCLAIMED // ALGORITHMIC PROBLEM SOLVER',
   ];
 
@@ -178,8 +178,8 @@ const Hero = () => {
             <span className="text-white/80">SEASONS 2024 - 2026</span>
           </div>
           <div className="hidden md:flex items-center gap-2 text-xs font-mono text-white/50 tracking-wider">
-            <span className="px-2 py-0.5 border border-white/20 rounded bg-black/40">CLOUD & DATA 4K</span>
-            <span className="px-2 py-0.5 border border-white/20 rounded bg-black/40">GENAI / LLM CERTIFIED</span>
+            <span className="px-2 py-0.5 border border-white/20 rounded bg-black/40">GENAI ENGINEER</span>
+            <span className="px-2 py-0.5 border border-white/20 rounded bg-black/40">CLOUD ARCHITECT</span>
           </div>
         </div>
 

@@ -1,9 +1,9 @@
 export const profile = {
   name: 'Divyanshu Pandey',
   brand: 'DIVYANSHU',
-  title: 'Software Development Engineer',
-  tagline: 'CLOUD.ENGINE',
-  role: 'Software Engineer & Problem Solver',
+  title: 'GenAI Engineer & Cloud Architect',
+  tagline: 'GENAI.ENGINE',
+  role: 'GenAI • Forward Deployed Engineering • Cloud Architecture',
   location: 'Faridabad, Haryana, India',
   email: 'pdivyanshu918@gmail.com',
   phone: '+91-9006188881',
@@ -14,8 +14,8 @@ export const profile = {
   // domain root.
   resumeUrl: 'Divyanshu_Pandey_Resume.pdf',
   summary:
-    'Software Development Engineer with 1.5+ years building and operating cloud data infrastructure and GenAI systems: AWS pipelines (S3, Lambda, Airflow) writing into PostgreSQL, RAG/LLM pipelines, containerized services (Docker, Kubernetes), and CI/CD workflows across IoT, media, and fintech production systems.',
-  stackLine: 'AWS • PostgreSQL • Docker/K8s • LLM/RAG',
+    'Software Development Engineer building GenAI systems and cloud architecture in production: RAG/LLM pipelines, AWS pipelines (S3, Lambda, Airflow) writing into PostgreSQL, and containerized services (Docker, Kubernetes) — shipped embedded directly with operations teams, validated against live production data, across IoT, media, and fintech systems.',
+  stackLine: 'GenAI/RAG • AWS Architecture • LLM Ops • Docker/K8s',
 };
 
 export const stats = [
@@ -39,30 +39,30 @@ export const techStack = [
 export const expertiseData = [
   {
     number: '01',
-    title: 'Cloud Data Infrastructure',
-    text: 'Architecting AWS pipelines (S3, Lambda, Airflow) that write into PostgreSQL, standardizing storage of multi-source production data at scale.',
-    tag: 'AWS & DATA PIPELINES',
-    gradient: 'from-[#1f0a0c] via-[#121212] to-[#0a0a0a]',
-  },
-  {
-    number: '02',
     title: 'GenAI & LLM Systems',
     text: 'Building RAG pipelines, vector-store retrieval, and LangChain-orchestrated LLM workflows — from multi-modal research automation to real-time translation.',
     tag: 'RAG / LANGCHAIN / VECTOR DB',
     gradient: 'from-[#1a0809] via-[#111111] to-[#090909]',
   },
   {
-    number: '03',
-    title: 'ML & Data Modeling',
-    text: 'Shipping recommendation engines, churn models (XGBoost, logistic regression), and time-series forecasting (ARIMA/LSTM) on production data.',
-    tag: 'ML / FEATURE ENGINEERING',
+    number: '02',
+    title: 'Forward-Deployed Engineering',
+    text: 'Embedding directly with operations teams to ship working AI tools fast — LLM-based auto-drafting, anomaly detection, validated against live production data before rollout, not staged demos.',
+    tag: 'CUSTOMER-EMBEDDED DELIVERY',
     gradient: 'from-[#220a0d] via-[#131313] to-[#0a0a0a]',
   },
   {
+    number: '03',
+    title: 'Cloud Architecture',
+    text: 'Designing AWS-based data and ML systems end to end (S3, Lambda, Airflow → PostgreSQL), containerized with Docker/Kubernetes and deployed via CI/CD.',
+    tag: 'AWS SYSTEM DESIGN',
+    gradient: 'from-[#1f0a0c] via-[#121212] to-[#0a0a0a]',
+  },
+  {
     number: '04',
-    title: 'Cloud & Deployment',
-    text: 'Containerizing services with Docker/Kubernetes and running CI/CD pipelines (Git, Jenkins, GitHub Actions) across IoT, media, and fintech systems.',
-    tag: 'DEVOPS & CLOUD',
+    title: 'ML & Data Modeling',
+    text: 'Shipping recommendation engines, churn models (XGBoost, logistic regression), and time-series forecasting (ARIMA/LSTM) on production data.',
+    tag: 'ML / FEATURE ENGINEERING',
     gradient: 'from-[#1d090b] via-[#101010] to-[#080808]',
   },
 ];
